@@ -22,3 +22,10 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function selectAllUser(data) {
+  return request({
+    url: `/integrated/user/selectAllUser/${data.page}/${data.content}`,
+    method: 'get'
+  })
+}

@@ -36,6 +36,13 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    proxy: {
+      '/dev-api/integrated': {
+        target: 'http://47.104.157.76:8080',
+        changeOrigin: true,
+        pathRewrite: { '^/dev-api/integrated': '/integrated' }
+      }
+    },
     before: require('./mock/mock-server.js')
   },
   configureWebpack: {

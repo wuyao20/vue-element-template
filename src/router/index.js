@@ -88,6 +88,30 @@ export const constantRoutes = [
         meta: { title: 'Form', icon: 'form' }
       }
     ]
+  },
+  {
+    path: '/department',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Department',
+        component: () => import('@/views/department/index'),
+        meta: { title: '部门管理', icon: 'department' }
+      }
+    ]
+  },
+  {
+    path: '/user',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'User',
+        component: () => import('@/views/user/index'),
+        meta: { title: '用户管理', icon: 'el-icon-user' }
+      }
+    ]
   }
 ]
 
