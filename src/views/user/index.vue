@@ -115,7 +115,7 @@
 
 <script>
 import { queryAllRole } from '@/api/roles'
-import { selectAllUser } from '@/api/user'
+import { selectAllUser, addUser, updateUser, delUser } from '@/api/user'
 import { departmentQueryAll } from '@/api/department'
 import Pagination from '@/components/Pagination/index'
 import waves from '@/directive/waves' // waves directive
@@ -178,7 +178,7 @@ export default {
     departmentQueryAll({ page: 1 }).then(res => {
       this.departments = res.obj.records
     })
-    queryAllRole({page: 1}).then(res => {
+    queryAllRole({ page: 1 }).then(res => {
       this.roles = res.obj.records
     })
   },
@@ -214,10 +214,68 @@ export default {
         this.listLoading = false
       })
     },
-    handleUpdate() {},
-    handleDelete() {},
-    createData() {},
-    updateData() {}
+    handleUpdate(row) {
+      this.temp = Object.assign({}, row) // copy obj
+      this.dialogStatus = 'update'
+      this.dialogFormVisible = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
+    },
+    handleDelete(row, $index) {
+      console.log($index)
+      const data = {
+        uuid: row.userRoleUuid,
+        page: this.listQuery.page
+      }
+      delUser(data).then(res => {
+        if (res.success) {
+          this.$notify.success({
+            title: '成功',
+            message: '删除用户成功'
+          })
+        } else {
+          this.$notify.error({
+            title: '失败',
+            message: res.msg
+          })
+        }
+        this.handleFilter()
+      })
+    },
+    createData() {
+      addUser(this.temp).then(res => {
+        if (res.success) {
+          this.$notify.success({
+            title: '成功',
+            message: '添加用户成功'
+          })
+        } else {
+          this.$notify.error({
+            title: '失败',
+            message: res.msg
+          })
+        }
+        this.handleFilter()
+      })
+    },
+    updateData() {
+      this.temp.page = this.listQuery.page
+      updateUser(this.temp).then(res => {
+        if (res.success) {
+          this.$notify.success({
+            title: '成功',
+            message: '修改用户信息成功'
+          })
+        } else {
+          this.$notify.error({
+            title: '失败',
+            message: '修改用户信息成功'
+          })
+        }
+        this.handleFilter()
+      })
+    }
   }
 }
 </script>

@@ -107,10 +107,10 @@ export default {
   },
   methods: {
     getList() {
-      this.listLoading = true
       this.handleFilter()
     },
     handleFilter() {
+      this.listLoading = true
       departmentQueryAll(this.listQuery).then(res => {
         this.list = res.obj.records
         this.total = this.list.length

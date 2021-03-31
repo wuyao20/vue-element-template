@@ -24,8 +24,8 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: '/',
-  outputDir: 'dist',
+  publicPath: '/charts',
+  outputDir: 'charts',
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
@@ -38,7 +38,7 @@ module.exports = {
     },
     proxy: {
       '/dev-api/integrated': {
-        target: 'http://47.104.157.76:8080',
+        target: 'http://221.6.211.32:7799',
         changeOrigin: true,
         pathRewrite: { '^/dev-api/integrated': '/integrated' }
       }
