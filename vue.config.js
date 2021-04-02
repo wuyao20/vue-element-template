@@ -31,16 +31,16 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: port,
-    open: true,
+    open: false,
     overlay: {
       warnings: false,
       errors: true
     },
     proxy: {
-      '/dev-api/integrated': {
+      '/integrated': {
         target: 'http://221.6.211.32:7799',
-        changeOrigin: true,
-        pathRewrite: { '^/dev-api/integrated': '/integrated' }
+        changeOrigin: true
+        // pathRewrite: { '^/dev-api/integrated': '/integrated' }
       }
     },
     before: require('./mock/mock-server.js')
