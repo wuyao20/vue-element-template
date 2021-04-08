@@ -113,6 +113,18 @@ export const constantRoutes = [
         meta: { title: '定时任务', icon: 'task' }
       }
     ]
+  },
+  {
+    path: '/commerce',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Conversion',
+        component: () => import('@/views/commerce/Conversion'),
+        meta: { title: '电商报表', icon: 'charts' }
+      }
+    ]
   }
 ]
 

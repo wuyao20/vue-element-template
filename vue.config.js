@@ -36,13 +36,13 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    proxy: {
-      '/integrated': {
-        target: 'http://221.6.211.32:7799',
-        changeOrigin: true
-        // pathRewrite: { '^/dev-api/integrated': '/integrated' }
-      }
-    },
+    // proxy: {
+    //   '/integrated': {
+    //     target: 'http://221.6.211.32:7799',
+    //     changeOrigin: true
+    //     // pathRewrite: { '^/dev-api/integrated': '/integrated' }
+    //   }
+    // },
     before: require('./mock/mock-server.js')
   },
   configureWebpack: {

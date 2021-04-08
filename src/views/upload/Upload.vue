@@ -2,21 +2,20 @@
   <div class="app-container">
     <div class="filter-container">
       <label class="filter-item">模块名称：</label>
-      <el-input v-model="listQuery.modularName" clearable style="width: 200px;" class="filter-item"></el-input>
+      <el-input v-model="listQuery.modularName" clearable style="width: 200px;" class="filter-item" />
       <el-button :loading="btnLoading" class="filter-item" type="primary" icon="el-icon-search" @click="handleSearch">
         search
       </el-button>
-      <el-button :loading="uploadLoading" class="filter-item" type="primary" icon="el-icon-upload"
-                 @click="handleUpload">
+      <el-button :loading="uploadLoading" class="filter-item" type="primary" icon="el-icon-upload" @click="handleUpload">
         upload
       </el-button>
       <el-table
+        v-loading="tableLoading"
         fit
         border
         highlight-current-row
         :data="list"
         style="width: 100%;"
-        v-loading="tableLoading"
       >
         <el-table-column label="ID" align="center" width="120">
           <template slot-scope="scope">
@@ -67,7 +66,7 @@
       >
         <div class="filter-container" style="margin-bottom: 20px;">
           <label class="filter-item">模块名称：</label>
-          <el-radio-group class="filter-item" v-model="temp.modularName">
+          <el-radio-group v-model="temp.modularName" class="filter-item">
             <el-radio-button label="onlineReport">电商模块</el-radio-button>
             <el-radio-button label="societyReport">社会渠道模块</el-radio-button>
             <el-radio-button label="selfSupportReport">自营模块</el-radio-button>
@@ -81,7 +80,8 @@
           :before-remove="beforeRemove"
           :limit="1"
           :on-exceed="handleExceed"
-          :file-list="fileList">
+          :file-list="fileList"
+        >
           <el-button size="small" type="primary">点击上传</el-button>
           <div slot="tip" class="el-upload__tip">文件上传限制要求：。。。。。。</div>
         </el-upload>
@@ -123,10 +123,14 @@ export default {
     this.handleSearch()
   },
   methods: {
-    handlePreview() {},
-    handleRemove() {},
-    beforeRemove() {},
-    handleExceed() {},
+    handlePreview() {
+    },
+    handleRemove() {
+    },
+    beforeRemove() {
+    },
+    handleExceed() {
+    },
     handleSearch() {
       this.tableLoading = true
       queryAllFiles(this.listQuery).then(res => {
