@@ -100,6 +100,11 @@
             <el-option v-for="item in roles" :key="item.roleId" :label="item.roleName" :value="item.roleUuid" />
           </el-select>
         </el-form-item>
+        <el-form-item label="查阅权限" prop="userRoleLevel">
+          <el-select v-model="temp.userJurisdictionUuid" style="width: 310px" placeholder="查阅权限">
+            <el-option v-for="item in levels" :key="item.value" :label="item.key" :value="item.value" />
+          </el-select>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
@@ -169,6 +174,28 @@ export default {
           id: 2,
           msg: '停用',
           bool: false
+        }
+      ],
+      levels: [
+        {
+          key: '个人级',
+          value: 'personal'
+        },
+        {
+          key: '网格级',
+          value: 'grid'
+        },
+        {
+          key: '条线级',
+          value: 'line'
+        },
+        {
+          key: '领导级',
+          value: 'leader'
+        },
+        {
+          key: '管理员',
+          value: 'admin'
         }
       ]
     }

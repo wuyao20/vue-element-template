@@ -17,14 +17,14 @@ const mutations = {
   RESET_STATE: (state) => {
     Object.assign(state, getDefaultState())
   },
-  SET_TOKEN: (state, token) => {
-    state.token = token
+  SET_UUID: (state, uuid) => {
+    state.uuid = uuid
   },
   SET_NAME: (state, name) => {
     state.name = name
   },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
+  SET_PHONE: (state, phone) => {
+    state.phone = phone
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
@@ -37,9 +37,12 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        const { obj } = response
+        commit('SET_UUID', obj.userUuid)
+        // commit('SET_ROLES', [obj.userRoleUuid])
+        // commit('SET_NAME', obj.userName)
+        // commit('SET_PHONE', obj.userPhone)
+        setToken(obj.userUuid)
         resolve()
       }).catch(error => {
         reject(error)
@@ -50,24 +53,21 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
+      getInfo(state.uuid).then(response => {
+        const { obj } = response
 
-        if (!data) {
+        if (!obj) {
           reject('Verification failed, please Login again.')
         }
-
-        const { roles, name, avatar } = data
-
         // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
+        // if (!roles || roles.length <= 0) {
+        //   reject('getInfo: roles must be a non-null array!')
+        // }
 
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        resolve(data)
+        commit('SET_ROLES', [obj.userRoleUuid])
+        commit('SET_NAME', obj.userName)
+        commit('SET_PHONE', obj.userPhone)
+        resolve(obj)
       }).catch(error => {
         reject(error)
       })

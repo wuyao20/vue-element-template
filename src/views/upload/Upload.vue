@@ -57,6 +57,11 @@
             <span>{{ scope.row.updateTime }}</span>
           </template>
         </el-table-column>
+        <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <el-button type="primary" icon="el-icon-upload" @click="fileUpload(scope.row.fileUuid)">数据库</el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <el-dialog
         :visible.sync="dialogFormVisible"
@@ -91,7 +96,7 @@
 </template>
 
 <script>
-import { queryAllFiles } from '@/api/upload'
+import { queryAllFiles, fileUploadDatabase } from '@/api/upload'
 
 export default {
   name: 'Upload',
@@ -116,13 +121,21 @@ export default {
   },
   computed: {
     uploadAction() {
-      return `http://221.6.211.32:7799/integrated/files/loadfiles/${this.temp.modularName}`
+      return `http://localhost:8080/integrated/files/loadfiles/${this.temp.modularName}`
     }
   },
   created() {
     this.handleSearch()
   },
   methods: {
+    fileUpload(fileUuid) {
+      fileUploadDatabase(fileUuid).then(res => {
+        this.$notify.success({
+          title: 'success',
+          message: res
+        })
+      })
+    },
     handlePreview() {
     },
     handleRemove() {

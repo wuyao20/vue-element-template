@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+    <el-form ref="loginForm" :model="loginForm" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
         <h3 class="title">Login Form</h3>
@@ -74,8 +74,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -181,7 +181,7 @@ $light_gray:#eee;
   min-height: 100%;
   width: 100%;
   background-color: $bg;
-  //background-image: url("//http://221.6.211.32:7799/assets/main-bg.jpg");
+  //background-image: url("//http://localhost:8080/assets/main-bg.jpg");
   overflow: hidden;
 
   .login-form {

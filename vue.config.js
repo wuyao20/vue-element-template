@@ -38,7 +38,7 @@ module.exports = {
     },
     // proxy: {
     //   '/integrated': {
-    //     target: 'http://221.6.211.32:7799',
+    //     target: 'http://localhost:8080',
     //     changeOrigin: true
     //     // pathRewrite: { '^/dev-api/integrated': '/integrated' }
     //   }
