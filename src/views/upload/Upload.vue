@@ -121,7 +121,7 @@ export default {
   },
   computed: {
     uploadAction() {
-      return `http://localhost:8080/integrated/files/loadfiles/${this.temp.modularName}`
+      return `http://221.6.211.32:7799/integrated/files/loadfiles/${this.temp.modularName}`
     }
   },
   created() {

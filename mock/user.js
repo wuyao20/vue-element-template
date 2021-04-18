@@ -1,4 +1,3 @@
-
 const tokens = {
   admin: {
     token: 'admin-token'
@@ -78,6 +77,62 @@ module.exports = [
       return {
         code: 20000,
         data: 'success'
+      }
+    }
+  },
+  // demo login
+  {
+    url: '/integrated/login',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '登录成功',
+        'success': true,
+        'obj': {
+          'userId': 3,
+          'userUuid': '1be368247fa911eb8777fcb3bc93041c',
+          'userLoginName': 'demoData',
+          'userLoginPassword': 'demoData',
+          'userName': 'demoData',
+          'userPhone': 'demoData',
+          'userArea': 'demoData',
+          'userGrid': 'demoData',
+          'userJobNumber': 'demoData',
+          'userDepartmentUuid': 'demoData',
+          'userSign': true,
+          'userJurisdictionUuid': '26ddd7d59d8f11ebafaefcb3bc93041c',
+          'userRoleUuid': 'demoData',
+          'createTime': '2021-03-08',
+          'updateTime': '2021-04-15'
+        }
+      }
+    }
+  },
+
+  // demo user info
+  {
+    url: '/integrated/user/queryUser',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '查询成功',
+        'success': true,
+        'obj': {
+          'userId': 3,
+          'userUuid': '1be368247fa911eb8777fcb3bc93041c',
+          'userLoginName': 'demoData',
+          'userLoginPassword': 'demoData',
+          'userName': 'demoData',
+          'userPhone': 'demoData',
+          'userArea': 'demoData',
+          'userGrid': 'demoData',
+          'userJobNumber': 'demoData',
+          'userDepartmentUuid': 'demoData',
+          'userSign': true,
+          'userRoleUuid': 'demoData',
+          'createTime': '2021-03-08',
+          'updateTime': '2021-03-08'
+        }
       }
     }
   }

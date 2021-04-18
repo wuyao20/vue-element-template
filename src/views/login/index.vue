@@ -181,7 +181,7 @@ $light_gray:#eee;
   min-height: 100%;
   width: 100%;
   background-color: $bg;
-  //background-image: url("//http://localhost:8080/assets/main-bg.jpg");
+  //background-image: url("//http://221.6.211.32:7799/assets/main-bg.jpg");
   overflow: hidden;
 
   .login-form {

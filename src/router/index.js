@@ -115,14 +115,29 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/commerce',
+    path: '/public',
     component: Layout,
+    meta: { title: '公众报表', icon: 'table' },
     children: [
       {
         path: 'index',
-        name: 'Conversion',
-        component: () => import('@/views/commerce/Conversion'),
-        meta: { title: '电商报表', icon: 'charts' }
+        name: 'CurrentMonthDev',
+        component: () => import('@/views/public/CurrentMonthDev'),
+        meta: { title: '当月整体发展', icon: 'charts' }
+      },
+      {
+        path: 'commerce',
+        name: 'Commerce',
+        meta: { title: '电商报表', icon: 'charts' },
+        component: () => import('@/views/commerce/index'),
+        children: [
+          {
+            path: 'conversion',
+            name: 'Conversion',
+            component: () => import('@/views/commerce/Conversion'),
+            meta: { title: '当月转化率', icon: 'charts' }
+          }
+        ]
       }
     ]
   }
