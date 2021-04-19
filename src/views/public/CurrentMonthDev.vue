@@ -7,6 +7,7 @@
       </el-select>
       <el-button type="primary" :loading="btnLoading" icon="el-icon-search" class="filter-item" @click="handleQuery">search</el-button>
     </div>
+    <div class="table-header">公众当月整体发展</div>
     <el-table
       v-loading="tableLoading"
       border
@@ -15,6 +16,7 @@
       stripe
       :data="list"
       style="width: 100%; overflow: hidden;"
+      :default-sort = "{prop: 'whole', order: 'descending'}"
     >
       <el-table-column align="center" fixed="left" label="ID" width="80">
         <template slot-scope="scope">
@@ -26,7 +28,7 @@
           {{ scope.row.area }}
         </template>
       </el-table-column>
-      <el-table-column label="整体发展量" align="center" width="150">
+      <el-table-column label="整体发展量" prop="whole" sortable align="center" width="150">
         <template slot-scope="scope">
           {{ scope.row.whole }}
         </template>
@@ -97,7 +99,10 @@
         </template>
       </el-table-column>
     </el-table>
-    <div id="public-chart" style="width: 100%; height: 400px; margin-top: 50px;" />
+    <div id="public-chart" style="width: 100%; height: 400px; margin-top: 80px;" />
+    <div id="sociology-chart" style="width: 100%; height: 400px; margin-top: 80px;" />
+    <div id="self-chart" style="width: 100%; height: 400px; margin-top: 80px;" />
+    <div id="online-chart" style="width: 100%; height: 400px; margin-top: 80px;" />
   </div>
 </template>
 
@@ -121,19 +126,50 @@ export default {
       ],
       list: [],
       tableLoading: false,
-      chart: undefined,
-      option: {},
+      publicChart: undefined,
+      sociologyChart: undefined,
+      selfChart: undefined,
+      onlineChart: undefined,
+      publicOption: {},
+      sociologyOption: {},
+      selfOption: {},
+      onlineOption: {},
       xAxisData: [],
       yAxisWhole: [],
       yAxisWholeNoActive: [],
       yAxisWholeNoNet: [],
       yAxisWholeFuse: [],
-      yAxisWholeNoActivePercent: []
+      yAxisWholeNoActivePercent: [],
+      yAxisWholeNoNetPercent: [],
+      yAxisWholeFusePercent: [],
+      yAxisSociologyWhole: [],
+      yAxisSociologyWholeNoActive: [],
+      yAxisSociologyWholeNoNet: [],
+      yAxisSociologyWholeFuse: [],
+      yAxisSociologyWholeNoActivePercent: [],
+      yAxisSociologyWholeNoNetPercent: [],
+      yAxisSociologyWholeFusePercent: [],
+      yAxisSelfWhole: [],
+      yAxisSelfWholeNoActive: [],
+      yAxisSelfWholeNoNet: [],
+      yAxisSelfWholeFuse: [],
+      yAxisSelfWholeNoActivePercent: [],
+      yAxisSelfWholeNoNetPercent: [],
+      yAxisSelfWholeFusePercent: [],
+      yAxisOnlineWhole: [],
+      yAxisOnlineWholeNoActive: [],
+      yAxisOnlineWholeNoNet: [],
+      yAxisOnlineWholeFuse: [],
+      yAxisOnlineWholeNoActivePercent: [],
+      yAxisOnlineWholeNoNetPercent: [],
+      yAxisOnlineWholeFusePercent: []
     }
   },
   mounted() {
-    // console.log(document.getElementById('public-chart'))
-    this.chart = this.$echarts.init(document.getElementById('public-chart'))
+    this.publicChart = this.$echarts.init(document.getElementById('public-chart'))
+    this.sociologyChart = this.$echarts.init(document.getElementById('sociology-chart'))
+    this.selfChart = this.$echarts.init(document.getElementById('self-chart'))
+    this.onlineChart = this.$echarts.init(document.getElementById('online-chart'))
     this.handleQuery()
   },
   methods: {
@@ -142,6 +178,7 @@ export default {
       this.tableLoading = true
       currentMonthWhole().then(res => {
         this.list = res.obj.map(item => {
+          item.whole = parseInt(item.whole)
           item.wholeNoActivePercent = getPercent(item.wholeNoActive, item.whole)
           item.wholeNoNetPercent = getPercent(item.wholeNoNet, item.whole)
           item.wholeFusePercent = getPercent(item.wholeFuse, item.whole)
@@ -157,27 +194,64 @@ export default {
           return item
         })
         const temp = this.list.slice(0, this.list.length-2)
+
         this.xAxisData = temp.map(item => item.area)
         this.yAxisWhole = temp.map(item => item.whole)
         this.yAxisWholeNoActive = temp.map(item => item.wholeNoActive)
         this.yAxisWholeNoNet = temp.map(item => item.wholeNoNet)
         this.yAxisWholeFuse  = temp.map(item => item.wholeFuse)
-        this.yAxisWholeNoActivePercent = temp.map(item => item.wholeNoActivePercent)
-        console.log(this.yAxisWholeNoActivePercent)
+        this.yAxisWholeNoActivePercent = temp.map(item => item.wholeNoActivePercent.split('%')[0])
+        this.yAxisWholeNoNetPercent = temp.map(item => item.wholeNoNetPercent.split('%')[0])
+        this.yAxisWholeFusePercent = temp.map(item => item.wholeFusePercent.split('%')[0])
+
+        this.yAxisSociologyWhole = temp.map(item => item.sociologyWhole)
+        this.yAxisSociologyWholeNoActive = temp.map(item => item.sociologyWholeNoActive)
+        this.yAxisSociologyWholeNoNet = temp.map(item => item.sociologyWholeNoNet)
+        this.yAxisSociologyWholeFuse  = temp.map(item => item.sociologyWholeFuse)
+        this.yAxisSociologyWholeNoActivePercent = temp.map(item => item.sociologyWholeNoActivePercent.split('%')[0])
+        this.yAxisSociologyWholeNoNetPercent = temp.map(item => item.sociologyWholeNoNetPercent.split('%')[0])
+        this.yAxisSociologyWholeFusePercent = temp.map(item => item.sociologyWholeFusePercent.split('%')[0])
+
+        this.yAxisSelfWhole = temp.map(item => item.selfWhole)
+        this.yAxisSelfWholeNoActive = temp.map(item => item.selfWholeNoActive)
+        this.yAxisSelfWholeNoNet = temp.map(item => item.selfWholeNoNet)
+        this.yAxisSelfWholeFuse  = temp.map(item => item.selfWholeFuse)
+        this.yAxisSelfWholeNoActivePercent = temp.map(item => item.selfWholeNoActivePercent.split('%')[0])
+        this.yAxisSelfWholeNoNetPercent = temp.map(item => item.selfWholeNoNetPercent.split('%')[0])
+        this.yAxisSelfWholeFusePercent = temp.map(item => item.selfWholeFusePercent.split('%')[0])
+
+        this.yAxisOnlineWhole = temp.map(item => item.onlineWhole)
+        this.yAxisOnlineWholeNoActive = temp.map(item => item.onlineWholeNoActive)
+        this.yAxisOnlineWholeNoNet = temp.map(item => item.onlineWholeNoNet)
+        this.yAxisOnlineWholeFuse  = temp.map(item => item.onlineWholeFuse)
+        this.yAxisOnlineWholeNoActivePercent = temp.map(item => item.onlineWholeNoActivePercent.split('%')[0])
+        this.yAxisOnlineWholeNoNetPercent = temp.map(item => item.onlineWholeNoNetPercent.split('%')[0])
+        this.yAxisOnlineWholeFusePercent = temp.map(item => item.onlineWholeFusePercent.split('%')[0])
+
         this.btnLoading = false
         this.tableLoading = false
-        this._initOption()
+        this._initPublicOption()
+        this._initSociologyOption()
+        this._initSelfOption()
+        this._initOnlineOption()
       })
     },
-    _initOption() {
-      this.option = {
+    _initPublicOption() {
+      this.publicOption = {
         title: {
+          top: '0',
+          left: '30',
           text: '公众当月总发展量'
         },
-        grid: {
-          top: '18%'
-        },
+        grid: [
+          {
+            top: '100',
+            width: '80%'
+            // containLabel: true
+          }
+        ],
         toolbox: {
+          right: '100',
           feature: {
             dataView: { show: true, readOnly: true },
             // magicType: { show: true, type: ['line', 'bar'] },
@@ -195,7 +269,12 @@ export default {
           }
         },
         legend: {
-          data: ['发展量', '非活', '非活率', '异网', '融合']
+          data: ['发展量', '非活', '非活率', '异网', '异网率', '融合', '融合率'],
+          selected: {
+            '非活率': false,
+            '异网率': false,
+            '融合率': false
+          }
         },
         xAxis: [
           {
@@ -221,22 +300,17 @@ export default {
             type: 'value',
             name: '百分比',
             min: 0,
-            max: 1,
+            max: 100,
+            axisLabel: {
+              formatter: '{value}%'
+            }
           }
         ],
         series: [
           {
             name: '发展量',
             type: 'bar',
-            data: this.yAxisWhole,
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
+            data: this.yAxisWhole
           },
           {
             name: '非活',
@@ -255,18 +329,374 @@ export default {
             data: this.yAxisWholeNoNet
           },
           {
+            name: '异网率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisWholeNoNetPercent
+          },
+          {
             name: '融合',
             type: 'bar',
             data: this.yAxisWholeFuse
+          },
+          {
+            name: '融合率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisWholeFusePercent
           }
         ]
       }
-      this.chart.setOption(this.option)
+      this.publicChart.setOption(this.publicOption)
+    },
+    _initSociologyOption() {
+      this.sociologyOption = {
+        title: {
+          top: '0',
+          left: '30',
+          text: '社渠当月总发展量'
+        },
+        grid: [
+          {
+            top: '100',
+            width: '80%'
+            // containLabel: true
+          }
+        ],
+        toolbox: {
+          right: '100',
+          feature: {
+            dataView: { show: true, readOnly: true },
+            // magicType: { show: true, type: ['line', 'bar'] },
+            restore: { show: true },
+            saveAsImage: { show: true }
+          }
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            crossStyle: {
+              color: '#999'
+            }
+          }
+        },
+        legend: {
+          data: ['发展量', '非活', '非活率', '异网', '异网率', '融合', '融合率'],
+          selected: {
+            '非活率': false,
+            '异网率': false,
+            '融合率': false
+          }
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: this.xAxisData,
+            axisPointer: {
+              type: 'shadow'
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '发展量',
+            axisLabel: {
+              formatter: '{value}户'
+            },
+            splitLine: {
+              show: false
+            }
+          },
+          {
+            type: 'value',
+            name: '百分比',
+            min: 0,
+            max: 100,
+            axisLabel: {
+              formatter: '{value}%'
+            }
+          }
+        ],
+        series: [
+          {
+            name: '发展量',
+            type: 'bar',
+            data: this.yAxisSociologyWhole
+          },
+          {
+            name: '非活',
+            type: 'bar',
+            data: this.yAxisSociologyWholeNoActive
+          },
+          {
+            name: '非活率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisSociologyWholeNoActivePercent
+          },
+          {
+            name: '异网',
+            type: 'bar',
+            data: this.yAxisSociologyWholeNoNet
+          },
+          {
+            name: '异网率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisSociologyWholeNoNetPercent
+          },
+          {
+            name: '融合',
+            type: 'bar',
+            data: this.yAxisSociologyWholeFuse
+          },
+          {
+            name: '融合率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisSociologyWholeFusePercent
+          }
+        ]
+      }
+      this.sociologyChart.setOption(this.sociologyOption)
+    },
+    _initSelfOption() {
+      this.selfOption = {
+        title: {
+          top: '0',
+          left: '30',
+          text: '自营当月总发展量'
+        },
+        grid: [
+          {
+            top: '100',
+            width: '80%'
+            // containLabel: true
+          }
+        ],
+        toolbox: {
+          right: '100',
+          feature: {
+            dataView: { show: true, readOnly: true },
+            // magicType: { show: true, type: ['line', 'bar'] },
+            restore: { show: true },
+            saveAsImage: { show: true }
+          }
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            crossStyle: {
+              color: '#999'
+            }
+          }
+        },
+        legend: {
+          data: ['发展量', '非活', '非活率', '异网', '异网率', '融合', '融合率'],
+          selected: {
+            '非活率': false,
+            '异网率': false,
+            '融合率': false
+          }
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: this.xAxisData,
+            axisPointer: {
+              type: 'shadow'
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '发展量',
+            axisLabel: {
+              formatter: '{value}户'
+            },
+            splitLine: {
+              show: false
+            }
+          },
+          {
+            type: 'value',
+            name: '百分比',
+            min: 0,
+            max: 100,
+            axisLabel: {
+              formatter: '{value}%'
+            }
+          }
+        ],
+        series: [
+          {
+            name: '发展量',
+            type: 'bar',
+            data: this.yAxisSelfWhole
+          },
+          {
+            name: '非活',
+            type: 'bar',
+            data: this.yAxisSelfWholeNoActive
+          },
+          {
+            name: '非活率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisSelfWholeNoActivePercent
+          },
+          {
+            name: '异网',
+            type: 'bar',
+            data: this.yAxisSelfWholeNoNet
+          },
+          {
+            name: '异网率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisSelfWholeNoNetPercent
+          },
+          {
+            name: '融合',
+            type: 'bar',
+            data: this.yAxisSelfWholeFuse
+          },
+          {
+            name: '融合率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisSelfWholeFusePercent
+          }
+        ]
+      }
+      this.selfChart.setOption(this.selfOption)
+    },
+    _initOnlineOption() {
+      this.onlineOption = {
+        title: {
+          top: '0',
+          left: '30',
+          text: '电商当月总发展量'
+        },
+        grid: [
+          {
+            top: '100',
+            width: '80%'
+            // containLabel: true
+          }
+        ],
+        toolbox: {
+          right: '100',
+          feature: {
+            dataView: { show: true, readOnly: true },
+            // magicType: { show: true, type: ['line', 'bar'] },
+            restore: { show: true },
+            saveAsImage: { show: true }
+          }
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            crossStyle: {
+              color: '#999'
+            }
+          }
+        },
+        legend: {
+          data: ['发展量', '非活', '非活率', '异网', '异网率', '融合', '融合率'],
+          selected: {
+            '非活率': false,
+            '异网率': false,
+            '融合率': false
+          }
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: this.xAxisData,
+            axisPointer: {
+              type: 'shadow'
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '发展量',
+            axisLabel: {
+              formatter: '{value}户'
+            },
+            splitLine: {
+              show: false
+            }
+          },
+          {
+            type: 'value',
+            name: '百分比',
+            min: 0,
+            max: 100,
+            axisLabel: {
+              formatter: '{value}%'
+            }
+          }
+        ],
+        series: [
+          {
+            name: '发展量',
+            type: 'bar',
+            data: this.yAxisOnlineWhole
+          },
+          {
+            name: '非活',
+            type: 'bar',
+            data: this.yAxisOnlineWholeNoActive
+          },
+          {
+            name: '非活率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisOnlineWholeNoActivePercent
+          },
+          {
+            name: '异网',
+            type: 'bar',
+            data: this.yAxisOnlineWholeNoNet
+          },
+          {
+            name: '异网率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisOnlineWholeNoNetPercent
+          },
+          {
+            name: '融合',
+            type: 'bar',
+            data: this.yAxisOnlineWholeFuse
+          },
+          {
+            name: '融合率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisOnlineWholeFusePercent
+          }
+        ]
+      }
+      this.onlineChart.setOption(this.onlineOption)
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-
+.table-header
+  font-size 30px
+  font-weight bold
+  text-align center
+  margin-bottom 12px
+  letter-spacing 2px
 </style>
