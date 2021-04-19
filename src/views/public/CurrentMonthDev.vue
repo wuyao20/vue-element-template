@@ -5,7 +5,9 @@
       <el-select v-model="listQuery.module" class="filter-item" style="width: 200px;">
         <el-option v-for="option in options" :key="option.key" :label="option.key" :value="option.value"></el-option>
       </el-select>
-      <el-button type="primary" :loading="btnLoading" icon="el-icon-search" class="filter-item" @click="handleQuery">search</el-button>
+      <el-button type="primary" :loading="btnLoading" icon="el-icon-search" class="filter-item" @click="handleQuery">
+        search
+      </el-button>
     </div>
     <div class="table-header">公众当月整体发展</div>
     <el-table
@@ -16,113 +18,116 @@
       stripe
       :data="list"
       style="width: 100%; overflow: hidden;"
-      :default-sort = "{prop: 'whole', order: 'descending'}"
+      :default-sort="{prop: 'noActivePercent', order: 'ascending'}"
     >
-      <el-table-column align="center" fixed="left" label="ID" width="80">
-        <template slot-scope="scope">
-          {{ scope.$index + 1 }}
-        </template>
-      </el-table-column>
-      <el-table-column label="区县" fixed="left" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.area }}
-        </template>
-      </el-table-column>
-      <el-table-column label="整体发展量" prop="whole" sortable align="center" width="150">
-        <template slot-scope="scope">
-          {{ scope.row.whole }}
-        </template>
-      </el-table-column>
-      <el-table-column label="非活" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.wholeNoActive }}
-        </template>
-      </el-table-column>
-      <el-table-column label="非活率" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.wholeNoActivePercent }}
-        </template>
-      </el-table-column>
-      <el-table-column label="整体异网" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.wholeNoNet }}
-        </template>
-      </el-table-column>
-      <el-table-column label="整体异网率" align="center" width="150">
-        <template slot-scope="scope">
-          {{ scope.row.wholeNoNetPercent }}
-        </template>
-      </el-table-column>
-      <el-table-column label="融合" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.wholeFuse }}
-        </template>
-      </el-table-column>
-      <el-table-column label="融合率" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.wholeFusePercent }}
-        </template>
-      </el-table-column>
-      <el-table-column label="社渠整体发展量" align="center" width="150">
-        <template slot-scope="scope">
-          {{ scope.row.sociologyWhole }}
-        </template>
-      </el-table-column>
-      <el-table-column label="社渠非活" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.sociologyWholeNoActive }}
-        </template>
-      </el-table-column>
-      <el-table-column label="社渠非活率" align="center" width="150">
-        <template slot-scope="scope">
-          {{ scope.row.sociologyWholeNoActivePercent }}
-        </template>
-      </el-table-column>
-      <el-table-column label="社渠整体异网" align="center" width="150">
-        <template slot-scope="scope">
-          {{ scope.row.sociologyWholeNoNet }}
-        </template>
-      </el-table-column>
-      <el-table-column label="社渠整体异网率" align="center" width="150">
-        <template slot-scope="scope">
-          {{ scope.row.sociologyWholeNoNetPercent }}
-        </template>
-      </el-table-column>
-      <el-table-column label="社渠融合" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.sociologyWholeFuse }}
-        </template>
-      </el-table-column>
-      <el-table-column label="社渠融合率" align="center" width="150">
-        <template slot-scope="scope">
-          {{ scope.row.sociologyWholeFusePercent }}
-        </template>
-      </el-table-column>
+      <!--      :cell-style="tableCellStyle"-->
+    <el-table-column align="center" fixed="left" label="ID" width="80">
+      <template slot-scope="scope">
+        {{ scope.$index + 1 }}
+      </template>
+    </el-table-column>
+    <el-table-column label="区县" fixed="left" align="center">
+      <template slot-scope="scope">
+        {{ scope.row.area }}
+      </template>
+    </el-table-column>
+    <el-table-column label="整体发展量" prop="whole" sortable align="center" width="150">
+      <template slot-scope="scope">
+        {{ scope.row.whole }}
+      </template>
+    </el-table-column>
+    <el-table-column label="非活" align="center">
+      <template slot-scope="scope">
+        {{ scope.row.wholeNoActive }}
+      </template>
+    </el-table-column>
+    <el-table-column label="非活率" prop="noActivePercent" :sortable="sortBoolean"
+                     :sort-method="(a, b) => percentSort(a, b)" align="center" width="150">
+      <template slot-scope="scope">
+        {{ scope.row.wholeNoActivePercent }}
+      </template>
+    </el-table-column>
+    <el-table-column label="整体异网" align="center">
+      <template slot-scope="scope">
+        {{ scope.row.wholeNoNet }}
+      </template>
+    </el-table-column>
+    <el-table-column label="整体异网率" align="center" width="150">
+      <template slot-scope="scope">
+        {{ scope.row.wholeNoNetPercent }}
+      </template>
+    </el-table-column>
+    <el-table-column label="融合" align="center">
+      <template slot-scope="scope">
+        {{ scope.row.wholeFuse }}
+      </template>
+    </el-table-column>
+    <el-table-column label="融合率" align="center">
+      <template slot-scope="scope">
+        {{ scope.row.wholeFusePercent }}
+      </template>
+    </el-table-column>
+    <el-table-column label="社渠整体发展量" align="center" width="150">
+      <template slot-scope="scope">
+        {{ scope.row.sociologyWhole }}
+      </template>
+    </el-table-column>
+    <el-table-column label="社渠非活" align="center">
+      <template slot-scope="scope">
+        {{ scope.row.sociologyWholeNoActive }}
+      </template>
+    </el-table-column>
+    <el-table-column label="社渠非活率" align="center" width="150">
+      <template slot-scope="scope">
+        {{ scope.row.sociologyWholeNoActivePercent }}
+      </template>
+    </el-table-column>
+    <el-table-column label="社渠整体异网" align="center" width="150">
+      <template slot-scope="scope">
+        {{ scope.row.sociologyWholeNoNet }}
+      </template>
+    </el-table-column>
+    <el-table-column label="社渠整体异网率" align="center" width="150">
+      <template slot-scope="scope">
+        {{ scope.row.sociologyWholeNoNetPercent }}
+      </template>
+    </el-table-column>
+    <el-table-column label="社渠融合" align="center">
+      <template slot-scope="scope">
+        {{ scope.row.sociologyWholeFuse }}
+      </template>
+    </el-table-column>
+    <el-table-column label="社渠融合率" align="center" width="150">
+      <template slot-scope="scope">
+        {{ scope.row.sociologyWholeFusePercent }}
+      </template>
+    </el-table-column>
     </el-table>
-    <div id="public-chart" style="width: 100%; height: 400px; margin-top: 80px;" />
-    <div id="sociology-chart" style="width: 100%; height: 400px; margin-top: 80px;" />
-    <div id="self-chart" style="width: 100%; height: 400px; margin-top: 80px;" />
-    <div id="online-chart" style="width: 100%; height: 400px; margin-top: 80px;" />
+    <div id="public-chart" style="width: 100%; height: 400px; margin-top: 80px;"/>
+    <div id="sociology-chart" style="width: 100%; height: 400px; margin-top: 80px;"/>
+    <div id="self-chart" style="width: 100%; height: 400px; margin-top: 80px;"/>
+    <div id="online-chart" style="width: 100%; height: 400px; margin-top: 80px;"/>
   </div>
 </template>
 
 <script>
-import { currentMonthWhole } from '@/api/public'
-import { getPercent } from '@/utils'
+import {currentMonthWhole} from '@/api/public'
+import {getPercent} from '@/utils'
 
 export default {
   name: 'CurrentMonthDev',
   data() {
     return {
+      sortBoolean: true,
       listQuery: {
         module: '',
       },
       btnLoading: false,
       options: [
-        { key: '整体', value: 'whole' },
-        { key: '社渠整体', value: 'sociologyWhole' },
-        { key: '自营整体', value: 'selfWhole' },
-        { key: '电商整体', value: 'onlineWhole' }
+        {key: '整体', value: 'whole'},
+        {key: '社渠整体', value: 'sociologyWhole'},
+        {key: '自营整体', value: 'selfWhole'},
+        {key: '电商整体', value: 'onlineWhole'}
       ],
       list: [],
       tableLoading: false,
@@ -193,13 +198,13 @@ export default {
           item.onlineWholeFusePercent = getPercent(item.onlineWholeFuse, item.onlineWhole)
           return item
         })
-        const temp = this.list.slice(0, this.list.length-2)
+        const temp = this.list.slice(0, this.list.length - 2)
 
         this.xAxisData = temp.map(item => item.area)
         this.yAxisWhole = temp.map(item => item.whole)
         this.yAxisWholeNoActive = temp.map(item => item.wholeNoActive)
         this.yAxisWholeNoNet = temp.map(item => item.wholeNoNet)
-        this.yAxisWholeFuse  = temp.map(item => item.wholeFuse)
+        this.yAxisWholeFuse = temp.map(item => item.wholeFuse)
         this.yAxisWholeNoActivePercent = temp.map(item => item.wholeNoActivePercent.split('%')[0])
         this.yAxisWholeNoNetPercent = temp.map(item => item.wholeNoNetPercent.split('%')[0])
         this.yAxisWholeFusePercent = temp.map(item => item.wholeFusePercent.split('%')[0])
@@ -207,7 +212,7 @@ export default {
         this.yAxisSociologyWhole = temp.map(item => item.sociologyWhole)
         this.yAxisSociologyWholeNoActive = temp.map(item => item.sociologyWholeNoActive)
         this.yAxisSociologyWholeNoNet = temp.map(item => item.sociologyWholeNoNet)
-        this.yAxisSociologyWholeFuse  = temp.map(item => item.sociologyWholeFuse)
+        this.yAxisSociologyWholeFuse = temp.map(item => item.sociologyWholeFuse)
         this.yAxisSociologyWholeNoActivePercent = temp.map(item => item.sociologyWholeNoActivePercent.split('%')[0])
         this.yAxisSociologyWholeNoNetPercent = temp.map(item => item.sociologyWholeNoNetPercent.split('%')[0])
         this.yAxisSociologyWholeFusePercent = temp.map(item => item.sociologyWholeFusePercent.split('%')[0])
@@ -215,7 +220,7 @@ export default {
         this.yAxisSelfWhole = temp.map(item => item.selfWhole)
         this.yAxisSelfWholeNoActive = temp.map(item => item.selfWholeNoActive)
         this.yAxisSelfWholeNoNet = temp.map(item => item.selfWholeNoNet)
-        this.yAxisSelfWholeFuse  = temp.map(item => item.selfWholeFuse)
+        this.yAxisSelfWholeFuse = temp.map(item => item.selfWholeFuse)
         this.yAxisSelfWholeNoActivePercent = temp.map(item => item.selfWholeNoActivePercent.split('%')[0])
         this.yAxisSelfWholeNoNetPercent = temp.map(item => item.selfWholeNoNetPercent.split('%')[0])
         this.yAxisSelfWholeFusePercent = temp.map(item => item.selfWholeFusePercent.split('%')[0])
@@ -223,7 +228,7 @@ export default {
         this.yAxisOnlineWhole = temp.map(item => item.onlineWhole)
         this.yAxisOnlineWholeNoActive = temp.map(item => item.onlineWholeNoActive)
         this.yAxisOnlineWholeNoNet = temp.map(item => item.onlineWholeNoNet)
-        this.yAxisOnlineWholeFuse  = temp.map(item => item.onlineWholeFuse)
+        this.yAxisOnlineWholeFuse = temp.map(item => item.onlineWholeFuse)
         this.yAxisOnlineWholeNoActivePercent = temp.map(item => item.onlineWholeNoActivePercent.split('%')[0])
         this.yAxisOnlineWholeNoNetPercent = temp.map(item => item.onlineWholeNoNetPercent.split('%')[0])
         this.yAxisOnlineWholeFusePercent = temp.map(item => item.onlineWholeFusePercent.split('%')[0])
@@ -235,6 +240,16 @@ export default {
         this._initSelfOption()
         this._initOnlineOption()
       })
+    },
+    tableCellStyle({row, column, rowIndex, columnIndex}) {
+      // console.log(row, column, rowIndex, columnIndex)
+      if (rowIndex <= 2 && columnIndex === 4) {
+        return 'background-color: rgba(235,57,5,1);'
+      }
+      return ''
+    },
+    percentSort(a, b) {
+      return parseFloat(/\d+\.\d+/.exec(a.wholeNoActivePercent)) - parseFloat(/\d+\.\d+/.exec(b.wholeNoActivePercent))
     },
     _initPublicOption() {
       this.publicOption = {
@@ -253,10 +268,10 @@ export default {
         toolbox: {
           right: '100',
           feature: {
-            dataView: { show: true, readOnly: true },
+            dataView: {show: true, readOnly: true},
             // magicType: { show: true, type: ['line', 'bar'] },
-            restore: { show: true },
-            saveAsImage: { show: true }
+            restore: {show: true},
+            saveAsImage: {show: true}
           }
         },
         tooltip: {
@@ -366,10 +381,10 @@ export default {
         toolbox: {
           right: '100',
           feature: {
-            dataView: { show: true, readOnly: true },
+            dataView: {show: true, readOnly: true},
             // magicType: { show: true, type: ['line', 'bar'] },
-            restore: { show: true },
-            saveAsImage: { show: true }
+            restore: {show: true},
+            saveAsImage: {show: true}
           }
         },
         tooltip: {
@@ -479,10 +494,10 @@ export default {
         toolbox: {
           right: '100',
           feature: {
-            dataView: { show: true, readOnly: true },
+            dataView: {show: true, readOnly: true},
             // magicType: { show: true, type: ['line', 'bar'] },
-            restore: { show: true },
-            saveAsImage: { show: true }
+            restore: {show: true},
+            saveAsImage: {show: true}
           }
         },
         tooltip: {
@@ -592,10 +607,10 @@ export default {
         toolbox: {
           right: '100',
           feature: {
-            dataView: { show: true, readOnly: true },
+            dataView: {show: true, readOnly: true},
             // magicType: { show: true, type: ['line', 'bar'] },
-            restore: { show: true },
-            saveAsImage: { show: true }
+            restore: {show: true},
+            saveAsImage: {show: true}
           }
         },
         tooltip: {
@@ -699,4 +714,8 @@ export default {
   text-align center
   margin-bottom 12px
   letter-spacing 2px
+
+.el-table
+  .warning-cell
+    background-color rgba(235, 57, 5, 1)
 </style>
