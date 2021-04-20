@@ -102,7 +102,7 @@
         </el-form-item>
         <el-form-item label="查阅权限" prop="userRoleLevel">
           <el-select v-model="temp.userJurisdictionUuid" style="width: 310px" placeholder="查阅权限">
-            <el-option v-for="item in levels" :key="item.value" :label="item.key" :value="item.value" />
+            <el-option v-for="item in levels" :key="item.jurisdictionId" :label="item.jurisdictionExplain" :value="item.jurisdictionUuid" />
           </el-select>
         </el-form-item>
       </el-form>
@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import { queryAllRole } from '@/api/roles'
+import { queryAllRole, queryAllLevels } from '@/api/roles'
 import { selectAllUser, addUser, updateUser, delUser } from '@/api/user'
 import { departmentQueryAll } from '@/api/department'
 import Pagination from '@/components/Pagination/index'
@@ -176,31 +176,13 @@ export default {
           bool: false
         }
       ],
-      levels: [
-        {
-          key: '个人级',
-          value: 'personal'
-        },
-        {
-          key: '网格级',
-          value: 'grid'
-        },
-        {
-          key: '条线级',
-          value: 'line'
-        },
-        {
-          key: '领导级',
-          value: 'leader'
-        },
-        {
-          key: '管理员',
-          value: 'admin'
-        }
-      ]
+      levels: []
     }
   },
   created() {
+    queryAllLevels().then(res => {
+      this.levels = res
+    })
     this.handleFilter()
     departmentQueryAll({ page: 1 }).then(res => {
       this.departments = res.obj.records

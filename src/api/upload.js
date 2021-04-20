@@ -13,3 +13,10 @@ export function fileUploadDatabase(uuid) {
     method: 'get'
   })
 }
+
+export function fileDelete(uuid) {
+  return request({
+    url: `/files/operation/delFile/${uuid}`,
+    method: 'get'
+  })
+}

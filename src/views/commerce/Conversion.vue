@@ -147,6 +147,9 @@ export default {
       if (rowIndex <= 2 && columnIndex === 6) {
         return 'background-color: rgba(45,224,12,1);'
       }
+      if (rowIndex >= 7 && columnIndex === 6) {
+        return 'background-color: rgba(240,8,24,1);'
+      }
       return ''
     },
     percentSort(a, b) {
@@ -276,5 +279,4 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
 </style>

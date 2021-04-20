@@ -59,7 +59,10 @@
         </el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-upload" @click="fileUpload(scope.row.fileUuid)">数据库</el-button>
+            <div class="btn-container">
+              <el-button type="primary" size="small" icon="el-icon-upload" @click="fileUpload(scope.row.fileUuid)">数据库</el-button>
+              <el-button type="danger" size="small" icon="el-icon-delete" @click="fileDelete(scope.row.fileUuid)">删除</el-button>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -86,9 +89,10 @@
           :limit="1"
           :on-exceed="handleExceed"
           :file-list="fileList"
+          name="fileContent"
         >
           <el-button size="small" type="primary">点击上传</el-button>
-          <div slot="tip" class="el-upload__tip">文件上传限制要求：。。。。。。</div>
+          <div slot="tip" class="el-upload__tip">只能上传单个文件</div>
         </el-upload>
       </el-dialog>
     </div>
@@ -96,8 +100,8 @@
 </template>
 
 <script>
-import { queryAllFiles, fileUploadDatabase } from '@/api/upload'
-
+import { queryAllFiles, fileUploadDatabase, fileDelete } from '@/api/upload'
+const baseUrl = process.env.VUE_APP_BASE_API
 export default {
   name: 'Upload',
   data() {
@@ -121,13 +125,21 @@ export default {
   },
   computed: {
     uploadAction() {
-      return `/files/loadfiles/${this.temp.modularName}`
+      return `${baseUrl}/files/loadfiles/${this.temp.modularName}`
     }
   },
   created() {
     this.handleSearch()
   },
   methods: {
+    fileDelete(fileUuid) {
+      fileDelete(fileUuid).then(res => {
+        this.$notify.success({
+          title: 'success',
+          message: res
+        })
+      })
+    },
     fileUpload(fileUuid) {
       fileUploadDatabase(fileUuid).then(res => {
         this.$notify.success({
@@ -143,6 +155,10 @@ export default {
     beforeRemove() {
     },
     handleExceed() {
+      this.$notify.error({
+        title: 'error',
+        message: '上传文件数量限制为1'
+      })
     },
     handleSearch() {
       this.tableLoading = true
@@ -159,4 +175,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.btn-container
+  display flex
+  flex-direction row
+  flex-flow nowrap
+  justify-content center
 </style>

@@ -286,9 +286,9 @@ export default {
         legend: {
           data: ['发展量', '非活', '非活率', '异网', '异网率', '融合', '融合率'],
           selected: {
-            '非活率': false,
-            '异网率': false,
-            '融合率': false
+            '非活率': true,
+            '异网率': true,
+            '融合率': true
           }
         },
         xAxis: [
@@ -399,9 +399,9 @@ export default {
         legend: {
           data: ['发展量', '非活', '非活率', '异网', '异网率', '融合', '融合率'],
           selected: {
-            '非活率': false,
-            '异网率': false,
-            '融合率': false
+            '非活率': true,
+            '异网率': true,
+            '融合率': true
           }
         },
         xAxis: [
@@ -512,9 +512,9 @@ export default {
         legend: {
           data: ['发展量', '非活', '非活率', '异网', '异网率', '融合', '融合率'],
           selected: {
-            '非活率': false,
-            '异网率': false,
-            '融合率': false
+            '非活率': true,
+            '异网率': true,
+            '融合率': true
           }
         },
         xAxis: [
@@ -625,9 +625,9 @@ export default {
         legend: {
           data: ['发展量', '非活', '非活率', '异网', '异网率', '融合', '融合率'],
           selected: {
-            '非活率': false,
-            '异网率': false,
-            '融合率': false
+            '非活率': true,
+            '异网率': true,
+            '融合率': true
           }
         },
         xAxis: [

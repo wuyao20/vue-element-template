@@ -29,3 +29,17 @@ export function delRole(data) {
     method: 'get'
   })
 }
+
+export function queryAllLevels() {
+  return request({
+    url: '/jurisdiction/getAllList',
+    method: 'get'
+  })
+}
+
+export function queryLevelByUUId(uuid) {
+  return request({
+    url: `/jurisdiction/getOne/${uuid}`,
+    method: 'get'
+  })
+}

@@ -82,7 +82,7 @@ module.exports = [
   },
   // demo login
   {
-    url: '/integrated/login',
+    url: '/login',
     type: 'post',
     response: config => {
       return {
@@ -111,7 +111,7 @@ module.exports = [
 
   // demo user info
   {
-    url: '/integrated/user/queryUser',
+    url: '/user/queryUser',
     type: 'get',
     response: config => {
       return {
@@ -132,6 +132,189 @@ module.exports = [
           'userRoleUuid': 'demoData',
           'createTime': '2021-03-08',
           'updateTime': '2021-03-08'
+        }
+      }
+    }
+  },
+  {
+    url: '/jurisdiction/getAllList',
+    type: 'get',
+    response: config => {
+      return [
+        {
+          'jurisdictionId': 1,
+          'jurisdictionUuid': '8656dd9c9d8e11ebafaefcb3bc93041c',
+          'jurisdictionName': 'personal',
+          'jurisdictionExplain': '个人级'
+        },
+        {
+          'jurisdictionId': 2,
+          'jurisdictionUuid': 'a7b195939d8e11ebafaefcb3bc93041c',
+          'jurisdictionName': 'grid',
+          'jurisdictionExplain': '网格级'
+        },
+        {
+          'jurisdictionId': 3,
+          'jurisdictionUuid': 'ebefd57a9d8e11ebafaefcb3bc93041c',
+          'jurisdictionName': 'line',
+          'jurisdictionExplain': '条线级'
+        },
+        {
+          'jurisdictionId': 4,
+          'jurisdictionUuid': '195ba0879d8f11ebafaefcb3bc93041c',
+          'jurisdictionName': 'leader',
+          'jurisdictionExplain': '领导级'
+        },
+        {
+          'jurisdictionId': 5,
+          'jurisdictionUuid': '26ddd7d59d8f11ebafaefcb3bc93041c',
+          'jurisdictionName': 'admin',
+          'jurisdictionExplain': '管理级'
+        }
+      ]
+    }
+  },
+  {
+    url: '/jurisdiction/getOne',
+    type: 'get',
+    response: config => {
+      return {
+        'jurisdictionId': 2,
+        'jurisdictionUuid': 'a7b195939d8e11ebafaefcb3bc93041c',
+        'jurisdictionName': 'grid',
+        'jurisdictionExplain': '网格级'
+      }
+    }
+  },
+  // demo user operation
+  {
+    url: '/user/addUser',
+    type: 'post',
+    response: config => {
+      return {
+        'success': true,
+        'numCount': 1
+      }
+    }
+  },
+  {
+    url: '/user/delUser',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '用户不存在',
+        'success': false,
+        'obj': {
+          'records': [
+            {
+              'userId': 3,
+              'userUuid': '1be368247fa911eb8777fcb3bc93041c',
+              'userLoginName': 'demoData',
+              'userLoginPassword': 'demoData',
+              'userName': 'demoData',
+              'userPhone': 'demoData',
+              'userArea': 'demoData',
+              'userGrid': 'demoData',
+              'userJobNumber': 'demoData',
+              'userDepartmentUuid': 'demoData',
+              'userSign': true,
+              'userRoleUuid': 'demoData',
+              'createTime': '2021-03-08',
+              'updateTime': '2021-03-08'
+            }
+          ],
+          'total': 1,
+          'size': 50,
+          'current': 1,
+          'orders': [],
+          'optimizeCountSql': true,
+          'hitCount': false,
+          'countId': null,
+          'maxLimit': null,
+          'searchCount': true,
+          'pages': 1
+        }
+      }
+    }
+  },
+  {
+    url: '/user/updateUser',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '查询成功',
+        'success': true,
+        'obj': {
+          'records': [
+            {
+              'userId': 3,
+              'userUuid': '1be368247fa911eb8777fcb3bc93041c',
+              'userLoginName': 'demoData',
+              'userLoginPassword': 'demoData',
+              'userName': 'demoData',
+              'userPhone': 'demoData',
+              'userArea': 'demoData',
+              'userGrid': 'demoData',
+              'userJobNumber': 'demoData',
+              'userDepartmentUuid': 'demoData',
+              'userSign': true,
+              'userRoleUuid': 'demoData',
+              'createTime': '2021-03-08',
+              'departmentName': null,
+              'roleName': null
+            }
+          ],
+          'total': 1,
+          'size': 50,
+          'current': 1,
+          'orders': [],
+          'optimizeCountSql': true,
+          'hitCount': false,
+          'countId': null,
+          'maxLimit': null,
+          'searchCount': true,
+          'pages': 1
+        }
+      }
+    }
+  },
+  {
+    url: '/user/selectAllUser',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '查询成功',
+        'success': true,
+        'obj': {
+          'records': [
+            {
+              'userId': 3,
+              'userUuid': '1be368247fa911eb8777fcb3bc93041c',
+              'userLoginName': 'demoData',
+              'userLoginPassword': 'demoData',
+              'userName': 'demoData',
+              'userPhone': 'demoData',
+              'userArea': 'demoData',
+              'userGrid': 'demoData',
+              'userJobNumber': 'demoData',
+              'userDepartmentUuid': 'demoData',
+              'userSign': true,
+              'userRoleUuid': 'demoData',
+              'createTime': '2021-03-08',
+              'departmentName': null, // 对应的部门名称
+              'roleName': null // 角色名称
+            }
+          ],
+          'total': 1,
+          'size': 50,
+          'current': 1,
+          'orders': [],
+          'optimizeCountSql': true,
+          'hitCount': false,
+          'countId': null,
+          'maxLimit': null,
+          'searchCount': true,
+          'pages': 1
         }
       }
     }
