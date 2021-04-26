@@ -138,6 +138,7 @@ export const asyncRoutes = [
         path: 'commerce',
         name: 'Commerce',
         meta: { title: '电商报表', icon: 'charts' },
+        redirect: 'conversion',
         component: () => import('@/views/commerce/index'),
         children: [
           {
@@ -151,6 +152,27 @@ export const asyncRoutes = [
             name: 'Test',
             component: () => import('@/views/commerce/test'),
             meta: { title: 'test', icon: 'charts' }
+          }
+        ]
+      },
+      {
+        path: 'self',
+        name: 'Self',
+        redirect: 'target',
+        component: () => import('@/views/public/self/index'),
+        meta: { title: '自营报表', icon: 'charts' },
+        children: [
+          {
+            path: 'target',
+            name: 'Target',
+            component: () => import('@/views/public/self/target'),
+            meta: { title: '营业厅管理', icon: 'charts' }
+          },
+          {
+            path: 'task',
+            name: 'Task',
+            component: () => import('@/views/public/self/task'),
+            meta: { title: '自营指标管理', icon: 'charts' }
           }
         ]
       }

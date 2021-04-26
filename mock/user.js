@@ -324,7 +324,7 @@ module.exports = [
     type: 'get',
     response: config => {
       return {
-        data: ['用户管理', '公众报表', '电商报表']
+        data: ['admin']
       }
     }
   }

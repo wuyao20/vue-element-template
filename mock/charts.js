@@ -336,5 +336,253 @@ module.exports = [
         ]
       }
     }
+  },
+
+  // self data
+  {
+    url: '/selfSupport/middle/queryVague',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '查询成功',
+        'success': true,
+        'obj': [
+          {
+            'id': 92,
+            'middleUuid': '3ab213d6a34611eba7dafcb3bc93041c',
+            'middleChannelName': '徐州市泉山区淮海西路150号淮西华盛营业厅',
+            'middleChannelId': '34b083s',
+            'middleHomeStore': '徐州市泉山区淮海西路150号淮西营业厅',
+            'middleHomeId': '34a0207',
+            'middleArea': '淮西片区',
+            'middleShopownerName': '井璟',
+            'middleGrid': '泉山公众综合网格'
+          },
+          {
+            'id': 93,
+            'middleUuid': '3ab21431a34611eba7dafcb3bc93041c',
+            'middleChannelName': '徐州市泉山区淮海西路150号淮西营业厅',
+            'middleChannelId': '34a0207',
+            'middleHomeStore': '徐州市泉山区淮海西路150号淮西营业厅',
+            'middleHomeId': '34a0207',
+            'middleArea': '淮西片区',
+            'middleShopownerName': '井璟',
+            'middleGrid': '泉山公众综合网格'
+          },
+          {
+            'id': 94,
+            'middleUuid': '3ab21494a34611eba7dafcb3bc93041c',
+            'middleChannelName': '徐州市泉山区淮海西路150号淮西营业厅行销点',
+            'middleChannelId': '34b3pbt',
+            'middleHomeStore': '徐州市泉山区淮海西路150号淮西营业厅',
+            'middleHomeId': '34a0207',
+            'middleArea': '淮西片区',
+            'middleShopownerName': '井璟',
+            'middleGrid': '泉山公众综合网格'
+          }
+        ]
+      }
+    }
+  },
+  {
+    url: '/selfSupport/middle/change',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '修改失败',
+        'success': false
+      }
+    }
+  },
+  {
+    url: '/selfSupport/middle/del',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '删除成功',
+        'success': false
+      }
+    }
+  },
+  {
+    url: '/selfSupport/middle/add',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '添加成功',
+        'success': true
+      }
+    }
+  },
+  {
+    url: '/selfSupport/middle/queryAll',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '查询成功',
+        'success': true,
+        'obj': {
+          'records': [
+            {
+              'id': 1,
+              'middleUuid': '3ab0a4d2a34611eba7dafcb3bc93041c',
+              'middleChannelName': '新沂新华路营业厅销售助手映射点',
+              'middleChannelId': '34b3kt8',
+              'middleHomeStore': '徐州市新沂新华路营业厅',
+              'middleHomeId': '34a0344',
+              'middleArea': '新沂片区',
+              'middleShopownerName': '徐苗',
+              'middleGrid': '新沂公众综合网格'
+            },
+            {
+              'id': 2,
+              'middleUuid': '3ab11233a34611eba7dafcb3bc93041c',
+              'middleChannelName': '新沂钟吾路营业厅销售助手映射点',
+              'middleChannelId': '34b3ktd',
+              'middleHomeStore': '徐州市新沂钟吾路营业厅',
+              'middleHomeId': '34a0353',
+              'middleArea': '新沂片区',
+              'middleShopownerName': '徐苗',
+              'middleGrid': '新沂公众综合网格'
+            },
+            {
+              'id': 3,
+              'middleUuid': '3ab113eaa34611eba7dafcb3bc93041c',
+              'middleChannelName': '徐州泉山南区奎园沃盟厅',
+              'middleChannelId': '34b2xgx',
+              'middleHomeStore': '徐州市云龙区和平路营业厅',
+              'middleHomeId': '34a0425',
+              'middleArea': '云龙片区',
+              'middleShopownerName': '薄莉苹',
+              'middleGrid': '云龙公众综合网格'
+            }
+          ],
+          'total': 268,
+          'size': 50,
+          'current': 1,
+          'orders': [],
+          'optimizeCountSql': true,
+          'hitCount': false,
+          'countId': null,
+          'maxLimit': null,
+          'searchCount': true,
+          'pages': 6
+        }
+      }
+    }
+  },
+  {
+    url: '/selfSupport/taskIndex/query',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '成功',
+        'success': true,
+        'obj': [
+          {
+            'taskId': 15,
+            'taskUuid': '861d16ffa40711eba7dafcb3bc93041c',
+            'taskIndexName': '新增指标',
+            'taskRelevantOffice': '徐州市泉山区淮海西路150号淮西营业厅',
+            'taskIndexNum': 559,
+            'taskAddDate': '20210423'
+          },
+          {
+            'taskId': 18,
+            'taskUuid': '86204f89a40711eba7dafcb3bc93041c',
+            'taskIndexName': '新增指标',
+            'taskRelevantOffice': '徐州市乐享通讯淮海东路自营厅',
+            'taskIndexNum': 283,
+            'taskAddDate': '20210423'
+          }
+        ]
+      }
+    }
+  },
+  {
+    url: '/selfSupport/taskIndex/queryAll',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '没有权限',
+        'success': false,
+        'obj': {
+          'records': [
+            {
+              'taskId': 1,
+              'taskUuid': '860f2c0ea40711eba7dafcb3bc93041c',
+              'taskIndexName': '新增指标',
+              'taskRelevantOffice': '徐州市云龙区东苑营业厅',
+              'taskIndexNum': 152,
+              'taskAddDate': '20210423'
+            },
+            {
+              'taskId': 2,
+              'taskUuid': '8610402ba40711eba7dafcb3bc93041c',
+              'taskIndexName': '新增指标',
+              'taskRelevantOffice': '徐州市云龙区和平路营业厅',
+              'taskIndexNum': 231,
+              'taskAddDate': '20210423'
+            },
+            {
+              'taskId': 3,
+              'taskUuid': '86110afaa40711eba7dafcb3bc93041c',
+              'taskIndexName': '新增指标',
+              'taskRelevantOffice': '徐州市云龙区贵邦俊园营业厅',
+              'taskIndexNum': 21,
+              'taskAddDate': '20210423'
+            },
+            {
+              'taskId': 4,
+              'taskUuid': '861214eba40711eba7dafcb3bc93041c',
+              'taskIndexName': '新增指标',
+              'taskRelevantOffice': '徐州市云龙区保利鑫城营业厅',
+              'taskIndexNum': 24,
+              'taskAddDate': '20210423'
+            }
+          ],
+          'total': 345,
+          'size': 50,
+          'current': 1,
+          'orders': [],
+          'optimizeCountSql': true,
+          'hitCount': false,
+          'countId': null,
+          'maxLimit': null,
+          'searchCount': true,
+          'pages': 7
+        }
+      }
+    }
+  },
+  {
+    url: '/selfSupport/taskIndex/add',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '添加成功',
+        'success': true
+      }
+    }
+  },
+  {
+    url: '/selfSupport/taskIndex/del',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '参数错误',
+        'success': false
+      }
+    }
+  },
+  {
+    url: '/selfSupport/taskIndex/update',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '没有权限',
+        'success': false
+      }
+    }
   }
 ]
