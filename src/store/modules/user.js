@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo, getMenu } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -63,11 +63,13 @@ const actions = {
         // if (!roles || roles.length <= 0) {
         //   reject('getInfo: roles must be a non-null array!')
         // }
-
-        commit('SET_ROLES', [obj.userRoleUuid])
         commit('SET_NAME', obj.userName)
         commit('SET_PHONE', obj.userPhone)
-        resolve(obj)
+        getMenu().then(res => {
+          commit('SET_ROLES', res.data)
+          obj.roles = res.data
+          resolve(obj)
+        })
       }).catch(error => {
         reject(error)
       })

@@ -52,3 +52,10 @@ export function delUser(data) {
     method: 'get'
   })
 }
+
+export function getMenu() {
+  return request({
+    url: `/menu`,
+    method: 'get'
+  })
+}

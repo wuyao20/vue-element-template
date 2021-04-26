@@ -95,7 +95,7 @@
             <el-option v-for="item in sign" :key="item.id" :label="item.msg" :value="item.bool" />
           </el-select>
         </el-form-item>
-        <el-form-item label="权限" prop="userRoleUuid">
+        <el-form-item label="角色" prop="userRoleUuid">
           <el-select v-model="temp.userRoleUuid" style="width: 310px" placeholder="权限">
             <el-option v-for="item in roles" :key="item.roleId" :label="item.roleName" :value="item.roleUuid" />
           </el-select>

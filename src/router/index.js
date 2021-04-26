@@ -53,7 +53,14 @@ export const constantRoutes = [
       component: () => import('@/views/dashboard/index'),
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
-  },
+  }
+]
+
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
   {
     path: '/department',
     component: Layout,
@@ -69,6 +76,7 @@ export const constantRoutes = [
   {
     path: '/user',
     component: Layout,
+    meta: { roles: ['用户管理'] },
     children: [
       {
         path: 'index',
@@ -117,7 +125,8 @@ export const constantRoutes = [
   {
     path: '/public',
     component: Layout,
-    meta: { title: '公众报表', icon: 'table' },
+    redirect: '/public/index',
+    meta: { title: '公众报表', icon: 'table', roles: ['公众报表'] },
     children: [
       {
         path: 'index',
@@ -136,18 +145,17 @@ export const constantRoutes = [
             name: 'Conversion',
             component: () => import('@/views/commerce/Conversion'),
             meta: { title: '当月转化率', icon: 'charts' }
+          },
+          {
+            path: 'test',
+            name: 'Test',
+            component: () => import('@/views/commerce/test'),
+            meta: { title: 'test', icon: 'charts' }
           }
         ]
       }
     ]
-  }
-]
-
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes = [
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

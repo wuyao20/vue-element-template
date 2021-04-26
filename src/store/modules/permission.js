@@ -9,7 +9,7 @@ function hasPermission(roles, route) {
   if (route.meta && route.meta.roles) {
     return roles.some(role => route.meta.roles.includes(role))
   } else {
-    return true
+    return false
   }
 }
 
@@ -20,13 +20,13 @@ function hasPermission(roles, route) {
  */
 export function filterAsyncRoutes(routes, roles) {
   const res = []
-
+  console.log(routes, roles)
   routes.forEach(route => {
     const tmp = { ...route }
     if (hasPermission(roles, tmp)) {
-      if (tmp.children) {
-        tmp.children = filterAsyncRoutes(tmp.children, roles)
-      }
+      // if (tmp.children) {
+      //   tmp.children = filterAsyncRoutes(tmp.children, roles)
+      // }
       res.push(tmp)
     }
   })
@@ -48,6 +48,7 @@ const mutations = {
 
 const actions = {
   generateRoutes({ commit }, roles) {
+    // console.log(roles)
     return new Promise(resolve => {
       let accessedRoutes
       if (roles.includes('admin')) {
