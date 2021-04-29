@@ -129,7 +129,7 @@
       >
         <el-button size="small" type="primary">点击上传</el-button>
         <div slot="tip" class="el-upload__tip">
-          <el-link type="primary">模板文件地址</el-link>
+          <el-link type="primary" icon="el-icon-edit" href="http://221.6.211.32:7799/material/userdemo.xlsx" target="_blank">模板文件地址</el-link>
         </div>
       </el-upload>
     </el-dialog>

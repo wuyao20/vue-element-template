@@ -10,7 +10,6 @@
     </div>
     <div class="title">整体发展情况报表(到厅)</div>
     <el-table
-      v-load="tableLoading"
       fit
       border
       highlight-current-row

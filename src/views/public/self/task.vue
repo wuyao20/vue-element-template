@@ -8,6 +8,7 @@
       <el-button type="primary" class="filter-item" :loading="btnLoading" icon="el-icon-search" @click="handleFilter">search</el-button>
       <el-button type="primary" class="filter-item" icon="el-icon-plus" @click="handleCreate">Create</el-button>
       <el-button type="danger" class="filter-item" icon="el-icon-delete" @click="handleDelete">Delete</el-button>
+      <el-link class="filter-item" type="primary" href="http://221.6.211.32:7799/material/selftask.xlsx"><el-button type="success" icon="el-icon-edit">模板文件地址</el-button></el-link>
     </div>
     <div class="filter-container">
       <label class="filter-item">当前锁：{{lockName}}</label>

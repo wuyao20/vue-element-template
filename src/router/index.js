@@ -69,7 +69,7 @@ export const asyncRoutes = [
         path: 'index',
         name: 'Department',
         component: () => import('@/views/department/index'),
-        meta: { title: '部门管理', icon: 'department' }
+        meta: { title: '部门管理', icon: 'department', roles: ['department'] }
       }
     ]
   },
@@ -82,7 +82,7 @@ export const asyncRoutes = [
         path: 'index',
         name: 'User',
         component: () => import('@/views/user/index'),
-        meta: { title: '用户管理', icon: 'el-icon-user' }
+        meta: { title: '用户管理', icon: 'el-icon-user', roles: ['user'] }
       }
     ]
   },
@@ -94,7 +94,7 @@ export const asyncRoutes = [
         path: 'index',
         name: 'Role',
         component: () => import('@/views/role/index'),
-        meta: { title: '角色管理', icon: 'role' }
+        meta: { title: '角色管理', icon: 'role', roles: ['roles'] }
       }
     ]
   },
@@ -106,7 +106,7 @@ export const asyncRoutes = [
         path: 'index',
         name: 'Upload',
         component: () => import('@/views/upload/Upload'),
-        meta: { title: '上传文件', icon: 'upload' }
+        meta: { title: '上传文件', icon: 'upload', roles: ['upload'] }
       }
     ]
   },
@@ -118,7 +118,7 @@ export const asyncRoutes = [
         path: 'index',
         name: 'quartzTask',
         component: () => import('@/views/task/index'),
-        meta: { title: '定时任务', icon: 'task' }
+        meta: { title: '定时任务', icon: 'task', roles: ['task'] }
       }
     ]
   },
@@ -126,7 +126,7 @@ export const asyncRoutes = [
     path: '/public',
     component: Layout,
     redirect: '/public/index',
-    meta: { title: '公众报表', icon: 'table', roles: ['公众报表'] },
+    meta: { title: '公众报表', icon: 'table', roles: ['charts'] },
     children: [
       {
         path: 'index',
