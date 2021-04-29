@@ -66,9 +66,12 @@ const actions = {
         commit('SET_NAME', obj.userName)
         commit('SET_PHONE', obj.userPhone)
         getMenu().then(res => {
-          commit('SET_ROLES', res.data)
-          obj.roles = res.data
-          resolve(obj)
+          const { obj } = res
+          const roleArray = obj.roleContent.split('|')
+          console.log(roleArray)
+          commit('SET_ROLES', roleArray)
+          // obj.roles = res.data
+          resolve(roleArray)
         })
       }).catch(error => {
         reject(error)

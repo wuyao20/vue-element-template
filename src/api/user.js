@@ -55,7 +55,7 @@ export function delUser(data) {
 
 export function getMenu() {
   return request({
-    url: `/menu`,
+    url: `/user/getAllAuthority`,
     method: 'get'
   })
 }

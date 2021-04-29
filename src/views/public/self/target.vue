@@ -111,12 +111,13 @@ export default {
     }
   },
   created() {
-    this.handleFilter()
+    this.handlePage()
   },
   methods: {
     handlePage() {
       queryMiddleByPage(this.listQuery.page).then(res => {
         this.list = res.obj.records
+        this.total = this.list.length
       })
     },
     handleDelete(row) {
@@ -134,7 +135,7 @@ export default {
           })
         }
       })
-      this.handleFilter()
+      this.handlePage()
     },
     handleUpdate(row) {
       this.temp = Object.assign({}, row)

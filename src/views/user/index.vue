@@ -5,6 +5,7 @@
       <el-input v-model="listQuery.content" placeholder="模糊信息" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-user-solid" @click="createUser">新建用户</el-button>
+      <el-button v-waves class="filter-item" type="success" icon="el-icon-upload" @click="uploadExcel">批量上传</el-button>
     </div>
     <el-table
       :key="tableKey"
@@ -115,6 +116,23 @@
         </el-button>
       </div>
     </el-dialog>
+    <el-dialog title="批量上传" :visible.sync="dialogUploadVisible">
+      <el-upload
+        class="upload-demo"
+        :action="uploadAction"
+        multiple
+        :limit="1"
+        :on-exceed="handleExceed"
+        :on-success="handleSuccess"
+        :file-list="fileList"
+        name="fileContent"
+      >
+        <el-button size="small" type="primary">点击上传</el-button>
+        <div slot="tip" class="el-upload__tip">
+          <el-link type="primary">模板文件地址</el-link>
+        </div>
+      </el-upload>
+    </el-dialog>
   </div>
 </template>
 
@@ -124,6 +142,7 @@ import { selectAllUser, addUser, updateUser, delUser } from '@/api/user'
 import { departmentQueryAll } from '@/api/department'
 import Pagination from '@/components/Pagination/index'
 import waves from '@/directive/waves' // waves directive
+
 export default {
   name: 'Index',
   components: {
@@ -132,6 +151,8 @@ export default {
   directives: { waves },
   data() {
     return {
+      dialogUploadVisible: false,
+      fileList: [],
       listQuery: {
         content: '', // 模糊查询内容
         userName: '',
@@ -179,6 +200,11 @@ export default {
       levels: []
     }
   },
+  computed: {
+    uploadAction() {
+      return process.env.VUE_APP_BASE_API + '/files/user/importUserInfo'
+    }
+  },
   created() {
     queryAllLevels().then(res => {
       this.levels = res
@@ -192,6 +218,26 @@ export default {
     })
   },
   methods: {
+    uploadExcel() {
+      this.dialogUploadVisible = true
+      this.fileList = []
+    },
+    handleExceed() {
+      this.$notify.error({
+        title: 'error',
+        message: '只允许单次上传一个文件。。。'
+      })
+    },
+    handleSuccess(res, file) {
+      this.fileList.push(file)
+      setTimeout(() => {
+        this.dialogUploadVisible = false
+      }, 2000)
+      this.$notify.success({
+        title: 'success',
+        message: res
+      })
+    },
     createUser() {
       this.resetTemp()
       this.dialogStatus = 'create'
@@ -265,6 +311,7 @@ export default {
             message: res.msg
           })
         }
+        this.dialogFormVisible = false
         this.handleFilter()
       })
     },
@@ -282,6 +329,7 @@ export default {
             message: '修改用户信息成功'
           })
         }
+        this.dialogFormVisible = false
         this.handleFilter()
       })
     }

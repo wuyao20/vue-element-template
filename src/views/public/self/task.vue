@@ -9,6 +9,10 @@
       <el-button type="primary" class="filter-item" icon="el-icon-plus" @click="handleCreate">Create</el-button>
       <el-button type="danger" class="filter-item" icon="el-icon-delete" @click="handleDelete">Delete</el-button>
     </div>
+    <div class="filter-container">
+      <label class="filter-item">当前锁：{{lockName}}</label>
+      <el-button type="warning" class="filter-item" @click="handleLock"><svg-icon icon-class="lock" />修改锁</el-button>
+    </div>
     <el-table
       v-loading="tableLoading"
       border
@@ -70,11 +74,24 @@
         </el-button>
       </div>
     </el-dialog>
+    <el-dialog title="修改锁" :visible.sync="dialogLockVisible">
+      <el-form ref="lockForm" :model="lockTemp" label-position="left" label-width="120px" style="width: 500px; margin-left: 50px;">
+        <el-form-item label="锁列表">
+          <el-select v-model="lockTemp.content">
+            <el-option v-for="item in locks" :key="item" :label="item" :value="item"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer">
+        <el-button @click="dialogLockVisible = false">cancel</el-button>
+        <el-button type="primary" @click="updateLock">confirm</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import {addTaskIndex, deleteTaskIndex, queryTaskIndex, queryTaskIndexByPage, updateTaskIndex} from "@/api/self"
+import {addTaskIndex, deleteTaskIndex, queryTaskIndex, queryTaskIndexByPage, updateTaskIndex, getLockName, queryGroupList, updateLock } from "@/api/self"
 import Pagination from '@/components/Pagination'
 
 export default {
@@ -84,9 +101,15 @@ export default {
   },
   data () {
     return {
+      locks: [],
+      lockTemp: {
+        content: ''
+      },
+      lockName: '',
+      dialogLockVisible: false,
       listQuery: {
         content: '',
-        page: 0,
+        page: 1,
         limit: 20
       },
       total: 0,
@@ -110,9 +133,32 @@ export default {
     }
   },
   created() {
-    this.handleFilter()
+    this.handlePage()
+    getLockName().then(res => {
+      const { obj } = res
+      this.lockName = obj
+    })
+    queryGroupList().then(res => {
+      this.locks = res.obj
+    })
   },
   methods: {
+    updateLock() {
+      updateLock(this.lockTemp.content).then(res => {
+        const { msg, success } = res
+        if(success) {
+          this.$notify.success({
+            title: 'success',
+            message: msg
+          })
+        }
+        this.dialogLockVisible = false
+        this.handlePage()
+      })
+    },
+    handleLock() {
+      this.dialogLockVisible = true
+    },
     handlePage() {
       queryTaskIndexByPage(this.listQuery.page).then(res => {
         this.list = res.obj.records

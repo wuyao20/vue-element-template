@@ -116,7 +116,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        name: 'Task',
+        name: 'quartzTask',
         component: () => import('@/views/task/index'),
         meta: { title: '定时任务', icon: 'task' }
       }
@@ -160,19 +160,31 @@ export const asyncRoutes = [
         name: 'Self',
         redirect: 'target',
         component: () => import('@/views/public/self/index'),
-        meta: { title: '自营报表', icon: 'charts' },
+        meta: { title: '自营报表', icon: 'businessHall' },
         children: [
           {
             path: 'target',
             name: 'Target',
             component: () => import('@/views/public/self/target'),
-            meta: { title: '营业厅管理', icon: 'charts' }
+            meta: { title: '营业厅管理', icon: 'businessHall' }
           },
           {
             path: 'task',
             name: 'Task',
             component: () => import('@/views/public/self/task'),
-            meta: { title: '自营指标管理', icon: 'charts' }
+            meta: { title: '自营指标管理', icon: 'target' }
+          },
+          {
+            path: 'dev2person',
+            name: 'Dev2Person',
+            component: () => import('@/views/public/self/wholeDev2Person'),
+            meta: { title: '整体发展到人', icon: 'target' }
+          },
+          {
+            path: 'dev2Hall',
+            name: 'Dev2Hall',
+            component: () => import('@/views/public/self/wholeDev2Hall'),
+            meta: { title: '整体发展到厅', icon: 'businessHall' }
           }
         ]
       }

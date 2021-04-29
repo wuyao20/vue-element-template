@@ -320,11 +320,20 @@ module.exports = [
     }
   },
   {
-    url: '/menu',
+    url: '/user/getAllAuthority',
     type: 'get',
     response: config => {
       return {
-        data: ['admin']
+        'msg': '成功',
+        'success': true,
+        'obj': {
+          'roleId': 2,
+          'roleUuid': 'adebe9a080b811eb995dfcb3bc93041c',
+          'roleName': '管理员',
+          'roleContent': 'admin|用户增加|用户删除|用户更新|单用户查询|用户列表|角色增加|角色删除|角色更新|单角色查询|角色列表|部门增加|部门删除|部门更新|单部门查询|部门列表|任务增加|任务删除|任务更新|单权限查询|权限列表|订单整体情况|整体质态情况',
+          'createTime': '2021-03-09',
+          'updateTime': '2021-04-19'
+        }
       }
     }
   }

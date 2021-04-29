@@ -74,3 +74,31 @@ export function deleteTaskIndex(data) {
     data
   })
 }
+
+export function getLockName() {
+  return request({
+    url: `/selfSupport/lockIndexGroup/getLockName`,
+    method: 'get'
+  })
+}
+
+export function queryGroupList() {
+  return request({
+    url: `/selfSupport/taskIndex/queryGroupList`,
+    method: 'get'
+  })
+}
+
+export function updateLock(content) {
+  return request({
+    url: `/selfSupport/lockIndexGroup/update/${content}`,
+    method: 'get'
+  })
+}
+
+export function querySelfSupportReportWhole() {
+  return request({
+    url: `/selfSupport/report/whole`,
+    method: 'get'
+  })
+}
