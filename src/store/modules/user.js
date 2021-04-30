@@ -53,7 +53,8 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.uuid).then(response => {
+      const uuid = getToken()
+      getInfo(uuid).then(response => {
         const { obj } = response
 
         if (!obj) {

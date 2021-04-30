@@ -75,6 +75,17 @@
           {{ scope.row.conversionRate }}
         </template>
       </el-table-column>
+      <el-table-column
+        prop="conversionRate"
+        label="100以上转化率"
+        :sortable="sortBoolean"
+        :sort-method="(a, b) => percentHundredSort(a, b)"
+        align="center"
+      >
+        <template slot-scope="scope">
+          {{ scope.row.hundredConversionRate }}
+        </template>
+      </el-table-column>
     </el-table>
     <div id="conversion-chart" style="width: 100%; height: 400px; margin-top: 50px;" />
   </div>
@@ -133,6 +144,7 @@ export default {
       yAxisFiftyMore: [],
       yAxisHundredMore: [],
       yAxisConversionRate: [],
+      yAxisHundredConversionRate: [],
       option: {},
       conversionChart: undefined
     }
@@ -153,8 +165,10 @@ export default {
       return ''
     },
     percentSort(a, b) {
-      // console.log(a, b)
       return parseFloat(/\d+\.\d+/.exec(a.conversionRate)) - parseFloat(/\d+\.\d+/.exec(b.conversionRate))
+    },
+    percentHundredSort(a, b) {
+      return parseFloat(/\d+\.\d+/.exec(a.hundredConversionRate)) - parseFloat(/\d+\.\d+/.exec(b.hundredConversionRate))
     },
     handleFilter() {
       this.btnLoading = true
@@ -166,22 +180,31 @@ export default {
         this.listQuery.endTime = this.date[1]
       }
       commerceRate(this.listQuery).then(res => {
+        // this.list = res.obj.filter(item => {
+        //   return item.area !== '整体'
+        // })
         this.list = res.obj
-        this.xAxisData = this.list.map(item => item.area)
-        this.yAxisOrderCount = this.list.map(item => {
+        const tempArray = res.obj.filter(item => {
+          return item.area !== '整体'
+        })
+        this.xAxisData = tempArray.map(item => item.area)
+        this.yAxisOrderCount = tempArray.map(item => {
           return item.ordersCount
         })
-        this.yAxisActivation = this.list.map(item => {
+        this.yAxisActivation = tempArray.map(item => {
           return item.activation
         })
-        this.yAxisFiftyMore = this.list.map(item => {
+        this.yAxisFiftyMore = tempArray.map(item => {
           return item.fiftyMore
         })
-        this.yAxisHundredMore = this.list.map(item => {
+        this.yAxisHundredMore = tempArray.map(item => {
           return item.hundredMore
         })
-        this.yAxisConversionRate = this.list.map(item => {
+        this.yAxisConversionRate = tempArray.map(item => {
           return /\d+\.\d+/.exec(item.conversionRate)[0]
+        })
+        this.yAxisHundredConversionRate = tempArray.map(item => {
+          return /\d+\.\d+/.exec(item.hundredConversionRate)[0]
         })
         this.initOptions()
         this.btnLoading = false
@@ -213,7 +236,7 @@ export default {
           }
         },
         legend: {
-          data: ['订单量', '激活', '50以上转化', '100以上转化', '转化率']
+          data: ['订单量', '激活', '50以上转化', '100以上转化', '50以上转化率', '100以上转化率']
         },
         xAxis: [
           {
@@ -265,10 +288,16 @@ export default {
             data: this.yAxisHundredMore
           },
           {
-            name: '转化率',
+            name: '50以上转化率',
             type: 'line',
             yAxisIndex: 1,
             data: this.yAxisConversionRate
+          },
+          {
+            name: '100以上转化率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisHundredConversionRate
           }
         ]
       }

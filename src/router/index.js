@@ -132,12 +132,12 @@ export const asyncRoutes = [
         path: 'index',
         name: 'CurrentMonthDev',
         component: () => import('@/views/public/CurrentMonthDev'),
-        meta: { title: '当月整体发展', icon: 'charts' }
+        meta: { title: '当月整体发展', icon: 'charts', roles: ['whole'] }
       },
       {
         path: 'commerce',
         name: 'Commerce',
-        meta: { title: '电商报表', icon: 'charts' },
+        meta: { title: '电商报表', icon: 'charts', roles: ['commerce'] },
         redirect: 'conversion',
         component: () => import('@/views/commerce/index'),
         children: [
@@ -145,13 +145,13 @@ export const asyncRoutes = [
             path: 'conversion',
             name: 'Conversion',
             component: () => import('@/views/commerce/Conversion'),
-            meta: { title: '当月转化率', icon: 'charts' }
+            meta: { title: '当月转化率', icon: 'charts', roles: ['commerce'] }
           },
           {
             path: 'test',
             name: 'Test',
             component: () => import('@/views/commerce/test'),
-            meta: { title: 'test', icon: 'charts' }
+            meta: { title: 'test', icon: 'charts', roles: ['commerce'] }
           }
         ]
       },
@@ -160,31 +160,45 @@ export const asyncRoutes = [
         name: 'Self',
         redirect: 'target',
         component: () => import('@/views/public/self/index'),
-        meta: { title: '自营报表', icon: 'businessHall' },
+        meta: { title: '自营报表', icon: 'businessHall', roles: ['self'] },
         children: [
           {
             path: 'target',
             name: 'Target',
             component: () => import('@/views/public/self/target'),
-            meta: { title: '营业厅管理', icon: 'businessHall' }
+            meta: { title: '营业厅管理', icon: 'businessHall', roles: ['self'] }
           },
           {
             path: 'task',
             name: 'Task',
             component: () => import('@/views/public/self/task'),
-            meta: { title: '自营指标管理', icon: 'target' }
+            meta: { title: '自营指标管理', icon: 'target', roles: ['self'] }
           },
           {
             path: 'dev2person',
             name: 'Dev2Person',
             component: () => import('@/views/public/self/wholeDev2Person'),
-            meta: { title: '整体发展到人', icon: 'target' }
+            meta: { title: '整体发展到人', icon: 'target', roles: ['self'] }
           },
           {
             path: 'dev2Hall',
             name: 'Dev2Hall',
             component: () => import('@/views/public/self/wholeDev2Hall'),
-            meta: { title: '整体发展到厅', icon: 'businessHall' }
+            meta: { title: '整体发展到厅', icon: 'businessHall', roles: ['self'] }
+          }
+        ]
+      },
+      {
+        path: 'stock',
+        name: 'Stock',
+        component: () => import('@/views/public/stock/index'),
+        meta: { title: '存量报表', icon: 'table', roles: ['stock'] },
+        children: [
+          {
+            path: 'vip3',
+            name: 'VIP3',
+            component: () => import('@/views/public/stock/VIP3'),
+            meta: { title: 'VIP3', icon: 'table', roles: ['stock'] }
           }
         ]
       }

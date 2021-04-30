@@ -14,7 +14,7 @@
       border
       highlight-current-row
       :data="list"
-      height="600"
+      height="500"
       style="width: 100%;"
       :cell-style="tableCellStyle"
     >
@@ -24,23 +24,23 @@
         </template>
       </el-table-column>
       <el-table-column label="区域" prop="area" fixed align="center" :filters="filtersArea" :filter-method="filterMethod"></el-table-column>
-      <el-table-column label="店长名称" prop="shopownerName" fixed align="center" :filters="filtersShopManager" :filter-method="filterMethod" width="110"></el-table-column>
-      <el-table-column label="门店名称" prop="channelName" align="center" :filters="filterChannelName" :filter-method="filterMethod" width="110"></el-table-column>
+      <el-table-column label="店长" prop="shopownerName" fixed align="center" :filters="filtersShopManager" :filter-method="filterMethod"></el-table-column>
+      <el-table-column label="门店" prop="channelName" align="center" :filters="filterChannelName" :filter-method="filterMethod" show-tooltip-when-overflow></el-table-column>
       <el-table-column label="任务指标" prop="taskIndexNum" align="center"></el-table-column>
       <el-table-column label="月整体发展量" prop="wholeDevelop" align="center"></el-table-column>
-      <el-table-column label="整体指标完成" prop="wholeIndexFinishPpContent" align="center" ></el-table-column>
+      <el-table-column label="整体指标完成" prop="wholeIndexFinishPpContent" align="center"></el-table-column>
 <!--      <el-table-column label="指标完成排名" prop="wholeIndexFinishPpOrder" align="center" width="140"></el-table-column>-->
-      <el-table-column label="月整体发展量不含副卡" prop="wholeDevelopNoSecCard" align="center" ></el-table-column>
-      <el-table-column label="不含副卡占比" prop="wholeNoSecCardPp" align="center" ></el-table-column>
+      <el-table-column label="月整体发展量不含副卡" prop="wholeDevelopNoSecCard" align="center"></el-table-column>
+      <el-table-column label="不含副卡占比" prop="wholeNoSecCardPp" align="center"></el-table-column>
 <!--      <el-table-column label="不含副卡占比排序" prop="wholeNoSecCardPpOrder" align="center" width="140"></el-table-column>-->
-      <el-table-column label="整体异网" prop="wholeOther" align="center" ></el-table-column>
+      <el-table-column label="整体异网" prop="wholeOther" align="center"></el-table-column>
       <el-table-column label="整体异网占比" prop="wholeOtherPp" align="center" ></el-table-column>
 <!--      <el-table-column label="整体异网占比排序" prop="wholeOtherPpOrder" align="center" width="140"></el-table-column>-->
-      <el-table-column label="不含副卡异网" prop="wholeNoSecCardOther" align="center" ></el-table-column>
+      <el-table-column label="不含副卡异网" prop="wholeNoSecCardOther" align="center"></el-table-column>
       <el-table-column label="不含副卡异网占比" prop="wholeNoSecCardOtherPp" align="center"></el-table-column>
 <!--      <el-table-column label="不含副卡异网占比排序" prop="wholeNoSecCardOtherPpOrder" align="center" width="170"></el-table-column>-->
       <el-table-column label="当天发展量" prop="sameDay" align="center"></el-table-column>
-      <el-table-column label="当日发展不含副卡" prop="sameDayNoSecCard" align="center" ></el-table-column>
+      <el-table-column label="当日发展不含副卡" prop="sameDayNoSecCard" align="center"></el-table-column>
       <el-table-column label="当天非副卡占比" prop="sameDayNoSecCardPp" align="center"></el-table-column>
 <!--      <el-table-column label="当天非副卡占比排序" prop="sameDayNoSecCardPpOrder" align="center" ></el-table-column>-->
       <el-table-column label="当日发展不含副卡异网" prop="sameDayNoSecCardOther" align="center" ></el-table-column>
