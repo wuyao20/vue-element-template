@@ -37,12 +37,19 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
-        const { obj } = response
-        commit('SET_UUID', obj.userUuid)
-        // commit('SET_ROLES', [obj.userRoleUuid])
-        // commit('SET_NAME', obj.userName)
-        // commit('SET_PHONE', obj.userPhone)
-        setToken(obj.userUuid)
+        const { msg, obj, success } = response
+        if (success) {
+          commit('SET_UUID', obj.userUuid)
+          // commit('SET_ROLES', [obj.userRoleUuid])
+          // commit('SET_NAME', obj.userName)
+          // commit('SET_PHONE', obj.userPhone)
+          setToken(obj.userUuid)
+        } else {
+          this.$notify.error({
+            title: '登录失败',
+            message: msg
+          })
+        }
         resolve()
       }).catch(error => {
         reject(error)

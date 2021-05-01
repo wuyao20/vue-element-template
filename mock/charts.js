@@ -111,7 +111,118 @@ module.exports = [
     }
   },
   {
-    url: '/import/whole/development',
+    url: '/OnlineRetailers/reportOrderDayWhole',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '查询成功',
+        'success': true,
+        'obj': [
+          {
+            'area': '邳州',
+            'ordersCount': '9175',
+            'activation': '3917',
+            'fiftyMore': '3614',
+            'hundredMore': '746',
+            'conversionRate': '39.39%',
+            'hundredConversionRate': '39.39%'
+          },
+          {
+            'area': '鼓楼',
+            'ordersCount': '3830',
+            'activation': '1943',
+            'fiftyMore': '1795',
+            'hundredMore': '531',
+            'conversionRate': '46.87%',
+            'hundredConversionRate': '39.39%'
+          },
+          {
+            'area': '沛县',
+            'ordersCount': '6723',
+            'activation': '2929',
+            'fiftyMore': '2587',
+            'hundredMore': '623',
+            'conversionRate': '38.48%',
+            'hundredConversionRate': '39.39%'
+          },
+          {
+            'area': '睢宁',
+            'ordersCount': '7445',
+            'activation': '3221',
+            'fiftyMore': '3027',
+            'hundredMore': '745',
+            'conversionRate': '40.66%',
+            'hundredConversionRate': '39.39%'
+          },
+          {
+            'area': '贾汪',
+            'ordersCount': '3560',
+            'activation': '1599',
+            'fiftyMore': '1459',
+            'hundredMore': '305',
+            'conversionRate': '40.98%',
+            'hundredConversionRate': '39.39%'
+          },
+          {
+            'area': '铜山',
+            'ordersCount': '7560',
+            'activation': '3176',
+            'fiftyMore': '2976',
+            'hundredMore': '719',
+            'conversionRate': '39.37%',
+            'hundredConversionRate': '39.39%'
+          },
+          {
+            'area': '泉山',
+            'ordersCount': '3562',
+            'activation': '1895',
+            'fiftyMore': '1826',
+            'hundredMore': '430',
+            'conversionRate': '51.26%',
+            'hundredConversionRate': '39.39%'
+          },
+          {
+            'area': '丰县',
+            'ordersCount': '5981',
+            'activation': '3176',
+            'fiftyMore': '2935',
+            'hundredMore': '1008',
+            'conversionRate': '49.07%',
+            'hundredConversionRate': '39.39%'
+          },
+          {
+            'area': '云龙',
+            'ordersCount': '2863',
+            'activation': '1571',
+            'fiftyMore': '1458',
+            'hundredMore': '412',
+            'conversionRate': '50.93%',
+            'hundredConversionRate': '39.39%'
+          },
+          {
+            'area': '新沂',
+            'ordersCount': '6587',
+            'activation': '3046',
+            'fiftyMore': '2746',
+            'hundredMore': '568',
+            'conversionRate': '41.69%',
+            'hundredConversionRate': '39.39%'
+          },
+          {
+            'area': '整体',
+            'ordersCount': '6587',
+            'activation': '3046',
+            'fiftyMore': '2746',
+            'hundredMore': '568',
+            'conversionRate': '41.69%',
+            'hundredConversionRate': '39.39%'
+          }
+        ]
+      }
+    }
+  },
+  {
+    url: '/OnlineRetailers/reportOrderDayWhole',
     type: 'get',
     response: config => {
       return {
@@ -4080,6 +4191,76 @@ module.exports = [
         'success': false,
         'userNo': 'a',
         'content': 'demoData'
+      }
+    }
+  },
+  {
+    url: '/OnlineRetailers/delivery/queryAll/',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '没有权限',
+        'success': false,
+        'obj': {
+          'records': [
+            {
+              'courierId': 0,
+              'courierUuid': '57c30be5aa2911ebb435fcb3bc93041c',
+              'courierTel': 'demoData',
+              'courierArea': 'demoData',
+              'courierType': 'demoData',
+              'courierGrid': 'demoData',
+              'courierTown': 'demoData',
+              'courierWeak': '1',
+              'courierRange': 'demoData',
+              'courierCoopName': 'demoData',
+              'courierDevelopPerson': 'demoData',
+              'courierDevelopMsg': 'demoData',
+              'courierDevelopCode': 'demoData',
+              'courierDevelopCodeNew': 'demoData'
+            }
+          ],
+          'total': 1,
+          'size': 50,
+          'current': 1,
+          'orders': [],
+          'optimizeCountSql': true,
+          'hitCount': false,
+          'countId': null,
+          'maxLimit': null,
+          'searchCount': true,
+          'pages': 1
+        }
+      }
+    }
+  },
+  {
+    url: '/OnlineRetailers/delivery/add',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '添加成功',
+        'success': true
+      }
+    }
+  },
+  {
+    url: '/OnlineRetailers/delivery/del/',
+    type: '',
+    response: config => {
+      return {
+        'msg': '删除成功',
+        'success': true
+      }
+    }
+  },
+  {
+    url: '/OnlineRetailers/delivery/change',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '更新成功',
+        'success': true
       }
     }
   }

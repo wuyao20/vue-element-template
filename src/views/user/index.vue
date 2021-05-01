@@ -159,6 +159,51 @@ export default {
     Pagination
   },
   directives: { waves },
+  filters: {
+    authorityFilter(uuid) {
+      const authorities = [
+        {
+          'jurisdictionId': 1,
+          'jurisdictionUuid': '8656dd9c9d8e11ebafaefcb3bc93041c',
+          'jurisdictionName': 'personal',
+          'jurisdictionExplain': '个人级'
+        },
+        {
+          'jurisdictionId': 2,
+          'jurisdictionUuid': 'a7b195939d8e11ebafaefcb3bc93041c',
+          'jurisdictionName': 'grid',
+          'jurisdictionExplain': '网格级'
+        },
+        {
+          'jurisdictionId': 3,
+          'jurisdictionUuid': 'ebefd57a9d8e11ebafaefcb3bc93041c',
+          'jurisdictionName': 'line',
+          'jurisdictionExplain': '条线级'
+        },
+        {
+          'jurisdictionId': 4,
+          'jurisdictionUuid': '195ba0879d8f11ebafaefcb3bc93041c',
+          'jurisdictionName': 'leader',
+          'jurisdictionExplain': '领导级'
+        },
+        {
+          'jurisdictionId': 5,
+          'jurisdictionUuid': '26ddd7d59d8f11ebafaefcb3bc93041c',
+          'jurisdictionName': 'admin',
+          'jurisdictionExplain': '管理级'
+        }
+      ]
+      console.log(uuid)
+      const tempArray = authorities.filter(item => {
+        return item.jurisdictionUuid === uuid
+      })
+      if (tempArray.length === 0) {
+        return ''
+      } else {
+        return tempArray[0].jurisdictionExplain
+      }
+    }
+  },
   data() {
     return {
       dialogUploadVisible: false,
@@ -208,51 +253,6 @@ export default {
         }
       ],
       levels: []
-    }
-  },
-  filters: {
-    authorityFilter(uuid) {
-      const authorities = [
-        {
-          'jurisdictionId': 1,
-          'jurisdictionUuid': '8656dd9c9d8e11ebafaefcb3bc93041c',
-          'jurisdictionName': 'personal',
-          'jurisdictionExplain': '个人级'
-        },
-        {
-          'jurisdictionId': 2,
-          'jurisdictionUuid': 'a7b195939d8e11ebafaefcb3bc93041c',
-          'jurisdictionName': 'grid',
-          'jurisdictionExplain': '网格级'
-        },
-        {
-          'jurisdictionId': 3,
-          'jurisdictionUuid': 'ebefd57a9d8e11ebafaefcb3bc93041c',
-          'jurisdictionName': 'line',
-          'jurisdictionExplain': '条线级'
-        },
-        {
-          'jurisdictionId': 4,
-          'jurisdictionUuid': '195ba0879d8f11ebafaefcb3bc93041c',
-          'jurisdictionName': 'leader',
-          'jurisdictionExplain': '领导级'
-        },
-        {
-          'jurisdictionId': 5,
-          'jurisdictionUuid': '26ddd7d59d8f11ebafaefcb3bc93041c',
-          'jurisdictionName': 'admin',
-          'jurisdictionExplain': '管理级'
-        }
-      ]
-      console.log(uuid)
-      const tempArray = authorities.filter(item => {
-        return item.jurisdictionUuid === uuid
-      })
-      if (tempArray.length === 0) {
-        return ''
-      } else {
-        return tempArray[0].jurisdictionExplain
-      }
     }
   },
   computed: {

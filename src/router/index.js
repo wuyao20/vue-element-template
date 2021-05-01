@@ -148,10 +148,16 @@ export const asyncRoutes = [
             meta: { title: '当月转化率', icon: 'charts', roles: ['commerce'] }
           },
           {
-            path: 'test',
-            name: 'Test',
-            component: () => import('@/views/commerce/test'),
-            meta: { title: 'test', icon: 'charts', roles: ['commerce'] }
+            path: 'thatday',
+            name: 'thatDay',
+            component: () => import('@/views/commerce/thatDay'),
+            meta: { title: '当天发展报表量', icon: 'charts', roles: ['commerce'] }
+          },
+          {
+            path: 'delivery',
+            name: 'Delivery',
+            component: () => import('@/views/commerce/delivery'),
+            meta: { title: '配送人员管理', icon: 'delivery', roles: ['commerce'] }
           }
         ]
       },
