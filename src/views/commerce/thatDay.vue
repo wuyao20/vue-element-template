@@ -25,19 +25,19 @@
           {{ scope.row.activation }}
         </template>
       </el-table-column>
-      <el-table-column label="50以上转化" align="center">
+      <el-table-column label="50以上充值" align="center">
         <template slot-scope="scope">
           {{ scope.row.fiftyMore }}
         </template>
       </el-table-column>
-      <el-table-column label="100以上转化" align="center">
+      <el-table-column label="100以上充值" align="center">
         <template slot-scope="scope">
           {{ scope.row.hundredMore }}
         </template>
       </el-table-column>
       <el-table-column
         prop="conversionRate"
-        label="50以上转化率"
+        label="50以上充值率"
         :sortable="sortBoolean"
         :sort-method="(a, b) => percentSort(a, b)"
         align="center"
@@ -48,7 +48,7 @@
       </el-table-column>
       <el-table-column
         prop="conversionRate"
-        label="100以上转化率"
+        label="100以上充值率"
         :sortable="sortBoolean"
         :sort-method="(a, b) => percentHundredSort(a, b)"
         align="center"

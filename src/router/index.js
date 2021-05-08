@@ -135,6 +135,14 @@ export const asyncRoutes = [
         meta: { title: '当月整体发展', icon: 'charts', roles: ['whole'] }
       },
       {
+        path: 'noactive',
+        name: 'NoActive',
+        component: () => import('@/views/public/NoActive'),
+        meta: {
+          title: '非活明细下载', icon: 'download', roles: ['charts']
+        }
+      },
+      {
         path: 'commerce',
         name: 'Commerce',
         meta: { title: '电商报表', icon: 'charts', roles: ['commerce'] },

@@ -91,7 +91,9 @@
           <el-input v-model="temp.userArea" />
         </el-form-item>
         <el-form-item label="网格" prop="userGrid">
-          <el-input v-model="temp.userGrid" />
+          <el-select v-model="temp.userGrid" style="width: 315px;">
+            <el-option v-for="item in grids" :key="item" :label="item" :value="item"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="工号" prop="userJobNumber">
           <el-input v-model="temp.userJobNumber" />
@@ -252,7 +254,8 @@ export default {
           bool: false
         }
       ],
-      levels: []
+      levels: [],
+      grids: ['泉山', '云龙', '鼓楼', '开新', '铜山', '贾汪', '丰县', '沛县', '新沂', '邳州', '睢宁', '市区本部']
     }
   },
   computed: {

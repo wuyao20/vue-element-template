@@ -18,90 +18,168 @@
       stripe
       :data="list"
       style="width: 100%; overflow: hidden;"
+      height="450"
       :default-sort="{prop: 'noActivePercent', order: 'ascending'}"
     >
-      <!--      :cell-style="tableCellStyle"-->
-    <el-table-column align="center" fixed="left" label="ID" width="80">
-      <template slot-scope="scope">
-        {{ scope.$index + 1 }}
-      </template>
-    </el-table-column>
-    <el-table-column label="区县" fixed="left" align="center">
-      <template slot-scope="scope">
-        {{ scope.row.area }}
-      </template>
-    </el-table-column>
-    <el-table-column label="整体发展量" prop="whole" sortable align="center" width="150">
-      <template slot-scope="scope">
-        {{ scope.row.whole }}
-      </template>
-    </el-table-column>
-    <el-table-column label="非活" align="center">
-      <template slot-scope="scope">
-        {{ scope.row.wholeNoActive }}
-      </template>
-    </el-table-column>
-    <el-table-column label="非活率" prop="noActivePercent" :sortable="sortBoolean"
-                     :sort-method="(a, b) => percentSort(a, b)" align="center" width="150">
-      <template slot-scope="scope">
-        {{ scope.row.wholeNoActivePercent }}
-      </template>
-    </el-table-column>
-    <el-table-column label="整体异网" align="center">
-      <template slot-scope="scope">
-        {{ scope.row.wholeNoNet }}
-      </template>
-    </el-table-column>
-    <el-table-column label="整体异网率" align="center" width="150">
-      <template slot-scope="scope">
-        {{ scope.row.wholeNoNetPercent }}
-      </template>
-    </el-table-column>
-    <el-table-column label="融合" align="center">
-      <template slot-scope="scope">
-        {{ scope.row.wholeFuse }}
-      </template>
-    </el-table-column>
-    <el-table-column label="融合率" align="center">
-      <template slot-scope="scope">
-        {{ scope.row.wholeFusePercent }}
-      </template>
-    </el-table-column>
-    <el-table-column label="社渠整体发展量" align="center" width="150">
-      <template slot-scope="scope">
-        {{ scope.row.sociologyWhole }}
-      </template>
-    </el-table-column>
-    <el-table-column label="社渠非活" align="center">
-      <template slot-scope="scope">
-        {{ scope.row.sociologyWholeNoActive }}
-      </template>
-    </el-table-column>
-    <el-table-column label="社渠非活率" align="center" width="150">
-      <template slot-scope="scope">
-        {{ scope.row.sociologyWholeNoActivePercent }}
-      </template>
-    </el-table-column>
-    <el-table-column label="社渠整体异网" align="center" width="150">
-      <template slot-scope="scope">
-        {{ scope.row.sociologyWholeNoNet }}
-      </template>
-    </el-table-column>
-    <el-table-column label="社渠整体异网率" align="center" width="150">
-      <template slot-scope="scope">
-        {{ scope.row.sociologyWholeNoNetPercent }}
-      </template>
-    </el-table-column>
-    <el-table-column label="社渠融合" align="center">
-      <template slot-scope="scope">
-        {{ scope.row.sociologyWholeFuse }}
-      </template>
-    </el-table-column>
-    <el-table-column label="社渠融合率" align="center" width="150">
-      <template slot-scope="scope">
-        {{ scope.row.sociologyWholeFusePercent }}
-      </template>
-    </el-table-column>
+      <el-table-column align="center" fixed="left" label="ID" width="80">
+        <template slot-scope="scope">
+          {{ scope.$index + 1 }}
+        </template>
+      </el-table-column>
+      <el-table-column label="区县" fixed="left" align="center">
+        <template slot-scope="scope">
+          {{ scope.row.area }}
+        </template>
+      </el-table-column>
+      <el-table-column label="整体发展情况" align="center">
+        <el-table-column label="整体发展量" prop="whole" sortable align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.whole }}
+          </template>
+        </el-table-column>
+        <el-table-column label="非活" align="center">
+          <template slot-scope="scope">
+            {{ scope.row.wholeNoActive }}
+          </template>
+        </el-table-column>
+        <el-table-column label="非活率" prop="noActivePercent" :sortable="sortBoolean"
+                         :sort-method="(a, b) => percentSort(a, b)" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.wholeNoActivePercent }}
+          </template>
+        </el-table-column>
+        <el-table-column label="整体异网" align="center">
+          <template slot-scope="scope">
+            {{ scope.row.wholeNoNet }}
+          </template>
+        </el-table-column>
+        <el-table-column label="整体异网率" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.wholeNoNetPercent }}
+          </template>
+        </el-table-column>
+        <el-table-column label="融合" align="center">
+          <template slot-scope="scope">
+            {{ scope.row.wholeFuse }}
+          </template>
+        </el-table-column>
+        <el-table-column label="融合率" align="center">
+          <template slot-scope="scope">
+            {{ scope.row.wholeFusePercent }}
+          </template>
+        </el-table-column>
+      </el-table-column>
+      <el-table-column label="社渠发展情况" align="center">
+        <el-table-column label="社渠整体发展量" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.sociologyWhole }}
+          </template>
+        </el-table-column>
+        <el-table-column label="社渠非活" align="center">
+          <template slot-scope="scope">
+            {{ scope.row.sociologyWholeNoActive }}
+          </template>
+        </el-table-column>
+        <el-table-column label="社渠非活率" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.sociologyWholeNoActivePercent }}
+          </template>
+        </el-table-column>
+        <el-table-column label="社渠整体异网" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.sociologyWholeNoNet }}
+          </template>
+        </el-table-column>
+        <el-table-column label="社渠整体异网率" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.sociologyWholeNoNetPercent }}
+          </template>
+        </el-table-column>
+        <el-table-column label="社渠融合" align="center">
+          <template slot-scope="scope">
+            {{ scope.row.sociologyWholeFuse }}
+          </template>
+        </el-table-column>
+        <el-table-column label="社渠融合率" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.sociologyWholeFusePercent }}
+          </template>
+        </el-table-column>
+      </el-table-column>
+      <el-table-column label="自营发展情况" align="center">
+        <el-table-column label="自营整体发展量" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.selfWhole }}
+          </template>
+        </el-table-column>
+        <el-table-column label="自营非活" align="center">
+          <template slot-scope="scope">
+            {{ scope.row.selfWholeNoActive }}
+          </template>
+        </el-table-column>
+        <el-table-column label="自营非活率" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.selfWholeNoActivePercent }}
+          </template>
+        </el-table-column>
+        <el-table-column label="自营整体异网" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.selfWholeNoNet }}
+          </template>
+        </el-table-column>
+        <el-table-column label="自营整体异网率" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.selfWholeNoNetPercent }}
+          </template>
+        </el-table-column>
+        <el-table-column label="自营融合" align="center">
+          <template slot-scope="scope">
+            {{ scope.row.selfWholeFuse }}
+          </template>
+        </el-table-column>
+        <el-table-column label="自营融合率" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.selfWholeFusePercent }}
+          </template>
+        </el-table-column>
+      </el-table-column>
+      <el-table-column label="电商发展情况" align="center">
+        <el-table-column label="电商整体发展量" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.onlineWhole }}
+          </template>
+        </el-table-column>
+        <el-table-column label="电商非活" align="center">
+          <template slot-scope="scope">
+            {{ scope.row.onlineWholeNoActive }}
+          </template>
+        </el-table-column>
+        <el-table-column label="电商非活率" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.onlineWholeNoActivePercent }}
+          </template>
+        </el-table-column>
+        <el-table-column label="电商整体异网" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.onlineWholeNoNet }}
+          </template>
+        </el-table-column>
+        <el-table-column label="电商整体异网率" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.onlineWholeNoNetPercent }}
+          </template>
+        </el-table-column>
+        <el-table-column label="电商融合" align="center">
+          <template slot-scope="scope">
+            {{ scope.row.onlineWholeFuse }}
+          </template>
+        </el-table-column>
+        <el-table-column label="电商融合率" align="center" width="150">
+          <template slot-scope="scope">
+            {{ scope.row.onlineWholeFusePercent }}
+          </template>
+        </el-table-column>
+      </el-table-column>
     </el-table>
     <div id="public-chart" style="width: 100%; height: 400px; margin-top: 80px;"/>
     <div id="sociology-chart" style="width: 100%; height: 400px; margin-top: 80px;"/>

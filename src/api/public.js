@@ -9,7 +9,7 @@ export function currentMonthWhole() {
 
 export function vip3QueryAllTargetByPhone(data) {
   return request({
-    url: `http://localhost:7799/tempActive/vip3/queryAllTarget/${data.userPhone}/${data.page} `,
+    url: `/tempActive/vip3/queryAllTarget/${data.page}/${data.userPhone}`,
     method: 'get'
   })
 }
@@ -26,5 +26,27 @@ export function updateVisit(data) {
     url: `/tempActive/vip3/updateVisit/${data.userNo}`,
     method: 'post',
     data
+  })
+}
+
+export function noActiveDownloadFile(data) {
+  return request({
+    url: `/outputFiles/noActive/downloadFile`,
+    method: 'post',
+    data
+  })
+}
+
+export function noActiveDownloadFilePage(data) {
+  return request({
+    url: `/outputFiles/noActive/getList/${data.page}`,
+    method: 'get'
+  })
+}
+
+export function noActiveDownloadDeleteFile(data) {
+  return request({
+    url: `/outputFiles/noActive/delFile/${data.outputId}`,
+    method: 'get'
   })
 }
