@@ -24,8 +24,16 @@
       <el-table-column prop="userStatus" label="用户状态" align="center"></el-table-column>
       <el-table-column prop="customerServiceId" label="vip客服经理工号" align="center"></el-table-column>
       <el-table-column prop="customerServiceName" label="客服" align="center"></el-table-column>
-      <el-table-column prop="visitDate" label="回访日期" align="center"></el-table-column>
-      <el-table-column prop="returnVisit" label="回访记录" align="center"></el-table-column>
+      <el-table-column prop="visitDate" label="回访日期" align="center">
+        <template slot-scope="scope">
+          {{scope.row.visitDate}}
+        </template>
+      </el-table-column>
+      <el-table-column prop="returnVisit" label="回访记录" align="center">
+        <template slot-scope="scope">
+          {{scope.row.returnVisit}}
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button v-waves size="small" type="primary" @click="handleUpdate(scope.row)">编辑</el-button>
@@ -53,6 +61,7 @@
         :file-list="fileList"
         :on-exceed="handleExceed"
         :on-success="handleSuccess"
+        name="fileContent"
       >
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -97,9 +106,13 @@ export default {
     })
   },
   methods: {
+    handleFilter() {
+      this._handleSearch()
+    },
     _handleSearch() {
       vip3QueryAllTarget(this.listQuery).then(res => {
         this.list = res.obj.records
+        this.$forceUpdate()
       })
     },
     BtnSearch() {
@@ -107,6 +120,7 @@ export default {
       this.btnLoading = true
       vip3QueryAllTargetByPhone(this.listQuery).then(res => {
         this.list = res.obj.records
+        this.$forceUpdate()
         this.tableLoading = false
         this.btnLoading = false
       })
@@ -120,19 +134,18 @@ export default {
       this.dialogUploadVisible = true
     },
     updateData() {
-      console.log(this.temp)
       const params = {
         userNo: this.temp.userNo,
         content: this.temp.returnVisit
       }
       updateVisit(params).then(res => {
         this.$notify.success({
-          title: 'error',
+          title: 'success',
           message: res.msg
         })
+        this._handleSearch()
+        this.dialogFormVisible = false
       })
-      this.dialogFormVisible = false
-      this._handleSearch()
     },
     handleExceed() {
       this.$notify.error({

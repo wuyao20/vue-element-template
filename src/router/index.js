@@ -139,7 +139,7 @@ export const asyncRoutes = [
         name: 'NoActive',
         component: () => import('@/views/public/NoActive'),
         meta: {
-          title: '非活明细下载', icon: 'download', roles: ['charts']
+          title: '非活明细下载', icon: 'download', roles: ['noactive']
         }
       },
       {
@@ -153,19 +153,19 @@ export const asyncRoutes = [
             path: 'conversion',
             name: 'Conversion',
             component: () => import('@/views/commerce/Conversion'),
-            meta: { title: '当月转化率', icon: 'charts', roles: ['commerce'] }
+            meta: { title: '当月转化率', icon: 'charts', roles: ['conversion'] }
           },
           {
             path: 'thatday',
             name: 'thatDay',
             component: () => import('@/views/commerce/thatDay'),
-            meta: { title: '当天发展报表量', icon: 'charts', roles: ['commerce'] }
+            meta: { title: '当天发展报表量', icon: 'charts', roles: ['todayDev'] }
           },
           {
             path: 'delivery',
             name: 'Delivery',
             component: () => import('@/views/commerce/delivery'),
-            meta: { title: '配送人员管理', icon: 'delivery', roles: ['commerce'] }
+            meta: { title: '配送人员管理', icon: 'delivery', roles: ['delivery'] }
           }
         ]
       },
@@ -180,25 +180,25 @@ export const asyncRoutes = [
             path: 'target',
             name: 'Target',
             component: () => import('@/views/public/self/target'),
-            meta: { title: '营业厅管理', icon: 'businessHall', roles: ['self'] }
+            meta: { title: '营业厅管理', icon: 'businessHall', roles: ['selfhall'] }
           },
           {
             path: 'task',
             name: 'Task',
             component: () => import('@/views/public/self/task'),
-            meta: { title: '自营指标管理', icon: 'target', roles: ['self'] }
+            meta: { title: '自营指标管理', icon: 'target', roles: ['selftask'] }
           },
           {
             path: 'dev2person',
             name: 'Dev2Person',
             component: () => import('@/views/public/self/wholeDev2Person'),
-            meta: { title: '整体发展到人', icon: 'target', roles: ['self'] }
+            meta: { title: '整体发展到人', icon: 'target', roles: ['dev2person'] }
           },
           {
             path: 'dev2Hall',
             name: 'Dev2Hall',
             component: () => import('@/views/public/self/wholeDev2Hall'),
-            meta: { title: '整体发展到厅', icon: 'businessHall', roles: ['self'] }
+            meta: { title: '整体发展到厅', icon: 'businessHall', roles: ['dev2hall'] }
           }
         ]
       },
