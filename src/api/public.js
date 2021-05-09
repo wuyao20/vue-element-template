@@ -50,3 +50,17 @@ export function noActiveDownloadDeleteFile(data) {
     method: 'get'
   })
 }
+
+export function vip3AllService() {
+  return request({
+    url: `/tempActive/vip3/getServicePersonnelName`,
+    method: 'get'
+  })
+}
+
+export function vip3UpdateService(data) {
+  return request({
+    url: `/tempActive/vip3/updateAscription/${data.userNo}/${data.jobNumber}`,
+    method: 'get'
+  })
+}

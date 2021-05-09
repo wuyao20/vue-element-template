@@ -34,9 +34,10 @@
           {{scope.row.returnVisit}}
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center">
+      <el-table-column label="操作" align="center" width="150px">
         <template slot-scope="scope">
           <el-button v-waves size="small" type="primary" @click="handleUpdate(scope.row)">编辑</el-button>
+          <el-button v-waves size="small" type="danger" @click="handleUpdateService(scope.row)">修改</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -68,11 +69,30 @@
         <div class="el-upload__tip" slot="tip">单次只允许上传一个文件</div>
       </el-upload>
     </el-dialog>
+    <el-dialog title="修改客服经理" :visible.sync="servicesDialogVisible">
+      <el-form :model="serviceTemp" label-position="left" label-width="150" style="width: 600px;">
+        <el-form-item label="移网账号">
+          <el-input disabled v-model="serviceTemp.deviceNumber"></el-input>
+        </el-form-item>
+        <el-form-item label="宽带账号">
+          <el-input disabled v-model="serviceTemp.deviceNumberKd"></el-input>
+        </el-form-item>
+        <el-form-item label="客服">
+          <el-select clearable filterable v-model="serviceTemp.customerServiceId">
+            <el-option v-for="item in services" :key="item.userJobNumber" :label="item.userName" :value="item.userJobNumber"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer">
+        <el-button @click="servicesDialogVisible=false">取消</el-button>
+        <el-button type="primary" @click="updateService">确认</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import { vip3QueryAllTarget, vip3QueryAllTargetByPhone, updateVisit } from "@/api/public"
+import { vip3QueryAllTarget, vip3QueryAllTargetByPhone, updateVisit, vip3AllService, vip3UpdateService } from "@/api/public"
 import waves from "@/directive/waves/waves"
 import Pagination from '@/components/Pagination'
 export default {
@@ -91,7 +111,10 @@ export default {
       tableLoading: false,
       btnLoading: false,
       fileList: [],
-      total: 0
+      total: 0,
+      services: [],
+      servicesDialogVisible: false,
+      serviceTemp: {}
     }
   },
   components: {
@@ -104,14 +127,40 @@ export default {
     vip3QueryAllTarget(this.listQuery).then(res => {
       this.list = res.obj.records
     })
+    vip3AllService().then(res => {
+      const { obj } = res
+      this.services = obj
+    })
   },
   methods: {
+    handleUpdateService(row) {
+      this.servicesDialogVisible = true
+      this.serviceTemp = Object.assign({}, row)
+    },
+    updateService() {
+      const result = {
+        userNo: this.serviceTemp.userNo,
+        jobNumber: this.serviceTemp.customerServiceId
+      }
+      vip3UpdateService(result).then(res => {
+        const { msg, success } = res
+        if(success) {
+          this.$notify.success({
+            title: 'success',
+            message: msg
+          })
+        }
+        this.handleFilter()
+        this.servicesDialogVisible = false
+      })
+    },
     handleFilter() {
       this._handleSearch()
     },
     _handleSearch() {
       vip3QueryAllTarget(this.listQuery).then(res => {
         this.list = res.obj.records
+        this.total = res.total
         this.$forceUpdate()
       })
     },
@@ -120,6 +169,7 @@ export default {
       this.btnLoading = true
       vip3QueryAllTargetByPhone(this.listQuery).then(res => {
         this.list = res.obj.records
+        this.total = res.total
         this.$forceUpdate()
         this.tableLoading = false
         this.btnLoading = false

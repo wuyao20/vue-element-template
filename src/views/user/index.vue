@@ -92,7 +92,7 @@
         </el-form-item>
         <el-form-item label="网格" prop="userGrid">
           <el-select v-model="temp.userGrid" style="width: 315px;">
-            <el-option v-for="item in grids" :key="item" :label="item" :value="item"></el-option>
+            <el-option v-for="item in grids" :key="item" :label="item" :value="item" />
           </el-select>
         </el-form-item>
         <el-form-item label="工号" prop="userJobNumber">

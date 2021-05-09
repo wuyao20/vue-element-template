@@ -57,7 +57,7 @@
             <el-input v-model="temp.roleName" />
           </el-form-item>
           <el-form-item label="角色内容" prop="roleContent">
-            <el-input type="textarea" autosize v-model="temp.roleContent" />
+            <el-input v-model="temp.roleContent" type="textarea" autosize />
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
