@@ -58,6 +58,7 @@
         </template>
       </el-table-column>
     </el-table>
+    <div id="thatDayChart" style="width: 100%; height: 400px; margin-top: 50px;" />
   </div>
 </template>
 
@@ -69,15 +70,37 @@ export default {
     return {
       list: [],
       sortBoolean: true,
-      tableLoading: false
+      tableLoading: false,
+      option: {},
+      thatDayChart: undefined,
+      xAxisData: [],
+      yAxisActivation: [],
+      yAxisFiftyMore: [],
+      yAxisHundredMore: [],
+      yAxisConversionRate: [],
+      yAxisHundredConversionRate: []
     }
   },
+  mounted() {
+    this.thatDayChart = this.$echarts.init(document.getElementById('thatDayChart'))
+    // this.initOptions()
+  },
   created() {
-    this.tableLoading = true
     commerceThatDayDev().then(res => {
-      this.list = res.obj
+      this.list = res.obj.filter(item => {
+        return item.area !== '整体'
+      })
+      this.xAxisData = this.list.map(item => {
+        return item.area
+      })
+      this.yAxisActivation = this.list.map(item => item.activation)
+      this.yAxisFiftyMore = this.list.map(item => item.fiftyMore)
+      this.yAxisHundredMore = this.list.map(item => item.hundredMore)
+      this.yAxisConversionRate = this.list.map(item => /\d+\.\d+/.exec(item.conversionRate)[0])
+      this.yAxisHundredConversionRate = this.list.map(item => /\d+\.\d+/.exec(item.hundredConversionRate)[0])
       setTimeout(() => {
         this.tableLoading = false
+        this.initOptions()
       }, 1000)
     })
   },
@@ -87,6 +110,95 @@ export default {
     },
     percentHundredSort(a, b) {
       return parseFloat(/\d+\.\d+/.exec(a.hundredConversionRate)) - parseFloat(/\d+\.\d+/.exec(b.hundredConversionRate))
+    },
+    initOptions() {
+      this.option = {
+        title: {
+          text: '电商当天发展量'
+        },
+        grid: {
+          top: '18%'
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            crossStyle: {
+              color: '#999'
+            }
+          }
+        },
+        toolbox: {
+          feature: {
+            dataView: { show: true, readOnly: true },
+            magicType: { show: true, type: ['line', 'bar'] },
+            restore: { show: true },
+            saveAsImage: { show: true }
+          }
+        },
+        legend: {
+          data: ['激活', '50以上转化', '100以上转化', '50以上转化率', '100以上转化率'],
+          bottom: 0
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: this.xAxisData,
+            axisPointer: {
+              type: 'shadow'
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '订单量',
+            axisLabel: {
+              formatter: '{value}单'
+            },
+            splitLine: {
+              show: false
+            }
+          },
+          {
+            type: 'value',
+            name: '转化率',
+            axisLabel: {
+              formatter: '{value}%'
+            }
+          }
+        ],
+        series: [
+          {
+            name: '激活',
+            type: 'bar',
+            data: this.yAxisActivation
+          },
+          {
+            name: '50以上转化',
+            type: 'bar',
+            data: this.yAxisFiftyMore
+          },
+          {
+            name: '100以上转化',
+            type: 'bar',
+            data: this.yAxisHundredMore
+          },
+          {
+            name: '50以上转化率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisConversionRate
+          },
+          {
+            name: '100以上转化率',
+            type: 'line',
+            yAxisIndex: 1,
+            data: this.yAxisHundredConversionRate
+          }
+        ]
+      }
+      this.thatDayChart.setOption(this.option)
     }
   }
 }

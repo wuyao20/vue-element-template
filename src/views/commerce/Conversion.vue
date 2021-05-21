@@ -158,10 +158,10 @@ export default {
     tableCellStyle({ row, column, rowIndex, columnIndex }) {
       // console.log(row, column, rowIndex, columnIndex)
       if (rowIndex <= 2 && columnIndex === 6) {
-        return 'background-color: rgba(45,224,12,1);'
+        return 'background-color: rgba(45,224,12,1); color: white;'
       }
       if (rowIndex >= 7 && columnIndex === 6) {
-        return 'background-color: rgba(240,8,24,1);'
+        return 'background-color: rgba(240,8,24,1); color: white;'
       }
       return ''
     },

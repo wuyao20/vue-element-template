@@ -87,8 +87,15 @@
         <el-form-item label="手机号" prop="userPhone">
           <el-input v-model="temp.userPhone" />
         </el-form-item>
+        <el-form-item label="条线" prop="userAscriptionUuid">
+          <el-select v-model="temp.userAscriptionUuid" style="width: 315px;">
+            <el-option v-for="item in ascriptions" :key="item.ascriptionUuid" :label="item.ascriptionName" :value="item.ascriptionUuid" />
+          </el-select>
+        </el-form-item>
         <el-form-item label="区域" prop="userArea">
-          <el-input v-model="temp.userArea" />
+          <el-select v-model="temp.userArea" style="width: 315px;">
+            <el-option v-for="item in areas" :key="item" :label="item" :value="item" />
+          </el-select>
         </el-form-item>
         <el-form-item label="网格" prop="userGrid">
           <el-select v-model="temp.userGrid" style="width: 315px;">
@@ -153,7 +160,8 @@ import { queryAllRole, queryAllLevels } from '@/api/roles'
 import { selectAllUser, addUser, updateUser, delUser } from '@/api/user'
 import { departmentQueryAll } from '@/api/department'
 import Pagination from '@/components/Pagination/index'
-import waves from '@/directive/waves' // waves directive
+import waves from '@/directive/waves'
+import { ascriptionAll } from '@/api/public' // waves directive
 
 export default {
   name: 'Index',
@@ -238,7 +246,8 @@ export default {
         userJobNumber: [{ required: true, message: '工号必填' }],
         userDepartmentUuid: [{ required: true, message: '部门必填', trigger: 'blur' }],
         userSign: [{ required: true, message: '是否在用必填' }],
-        userRoleUuid: [{ required: true, message: '权限必填', trigger: 'blur' }]
+        userRoleUuid: [{ required: true, message: '权限必填', trigger: 'blur' }],
+        userAscriptionUuid: [{ required: true, message: '条线必填', trigger: 'blur' }]
       },
       departments: [],
       roles: [],
@@ -255,7 +264,9 @@ export default {
         }
       ],
       levels: [],
-      grids: ['泉山', '云龙', '鼓楼', '开新', '铜山', '贾汪', '丰县', '沛县', '新沂', '邳州', '睢宁', '市区本部']
+      grids: ['泉山', '云龙', '鼓楼', '开新', '铜山', '贾汪', '丰县', '沛县', '新沂', '邳州', '睢宁', '市区本部', '政企'],
+      areas: ['泉山', '云龙', '鼓楼', '开新', '铜山', '贾汪', '丰县', '沛县', '新沂', '邳州', '睢宁', '市区本部'],
+      ascriptions: []
     }
   },
   computed: {
@@ -274,6 +285,10 @@ export default {
     })
     queryAllRole({ page: 1 }).then(res => {
       this.roles = res.obj.records
+    })
+    ascriptionAll().then(res => {
+      this.ascriptions = res.obj
+      console.log(this.ascriptions)
     })
   },
   methods: {
@@ -316,7 +331,8 @@ export default {
         userJobNumber: '',
         userDepartmentUuid: '',
         userSign: true,
-        userRoleUuid: ''
+        userRoleUuid: '',
+        userAscriptionUuid: ''
       }
     },
     handleFilter() {

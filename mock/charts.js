@@ -1,5 +1,14 @@
 module.exports = [
   {
+    url: '/selfSupport/taskIndex/uploadFile',
+    type: 'post',
+    response: config => {
+      return {
+        msg: 'success'
+      }
+    }
+  },
+  {
     url: '/import/whole/development',
     type: 'get',
     response: config => {
@@ -873,19 +882,27 @@ module.exports = [
         'obj': {
           'records': [
             {
-              'taskId': 1,
-              'taskUuid': '860f2c0ea40711eba7dafcb3bc93041c',
+              'taskId': 15,
+              'taskUuid': '861d16ffa40711eba7dafcb3bc93041c',
               'taskIndexName': '新增指标',
-              'taskRelevantOffice': '徐州市云龙区东苑营业厅',
-              'taskIndexNum': 152,
+              'taskRelevantOffice': '徐州市泉山区淮海西路150号淮西营业厅',
+              'taskIndexNumDay': 0,
+              'taskIndexNumMonth': 0,
+              'taskIndexNumQuarter': 0,
+              'taskIndexNumYear': 0,
+              'taskAscription': '电商条线',
               'taskAddDate': '20210423'
             },
             {
-              'taskId': 2,
-              'taskUuid': '8610402ba40711eba7dafcb3bc93041c',
+              'taskId': 15,
+              'taskUuid': '861d16ffa40711eba7dafcb3bc93041c',
               'taskIndexName': '新增指标',
-              'taskRelevantOffice': '徐州市云龙区和平路营业厅',
-              'taskIndexNum': 231,
+              'taskRelevantOffice': '徐州市泉山区淮海西路150号淮西营业厅',
+              'taskIndexNumDay': 0,
+              'taskIndexNumMonth': 0,
+              'taskIndexNumQuarter': 0,
+              'taskIndexNumYear': 0,
+              'taskAscription': '电商条线',
               'taskAddDate': '20210423'
             },
             {
@@ -897,11 +914,15 @@ module.exports = [
               'taskAddDate': '20210423'
             },
             {
-              'taskId': 4,
-              'taskUuid': '861214eba40711eba7dafcb3bc93041c',
+              'taskId': 15,
+              'taskUuid': '861d16ffa40711eba7dafcb3bc93041c',
               'taskIndexName': '新增指标',
-              'taskRelevantOffice': '徐州市云龙区保利鑫城营业厅',
-              'taskIndexNum': 24,
+              'taskRelevantOffice': '徐州市泉山区淮海西路150号淮西营业厅',
+              'taskIndexNumDay': 0,
+              'taskIndexNumMonth': 0,
+              'taskIndexNumQuarter': 0,
+              'taskIndexNumYear': 0,
+              'taskAscription': '电商条线',
               'taskAddDate': '20210423'
             }
           ],
@@ -932,15 +953,24 @@ module.exports = [
             'taskUuid': '861d16ffa40711eba7dafcb3bc93041c',
             'taskIndexName': '新增指标',
             'taskRelevantOffice': '徐州市泉山区淮海西路150号淮西营业厅',
-            'taskIndexNum': 559,
+            'taskIndexNumDay': 0,
+            'taskIndexNumMonth': 0,
+            'taskIndexNumQuarter': 0,
+            'taskIndexNumYear': 0,
+            'taskAscription': '电商条线',
             'taskAddDate': '20210423'
+
           },
           {
-            'taskId': 18,
-            'taskUuid': '86204f89a40711eba7dafcb3bc93041c',
+            'taskId': 15,
+            'taskUuid': '861d16ffa40711eba7dafcb3bc93041c',
             'taskIndexName': '新增指标',
-            'taskRelevantOffice': '徐州市乐享通讯淮海东路自营厅',
-            'taskIndexNum': 283,
+            'taskRelevantOffice': '徐州市泉山区淮海西路150号淮西营业厅',
+            'taskIndexNumDay': 0,
+            'taskIndexNumMonth': 150,
+            'taskIndexNumQuarter': 0,
+            'taskIndexNumYear': 0,
+            'taskAscription': '电商条线',
             'taskAddDate': '20210423'
           }
         ]
@@ -4626,6 +4656,226 @@ module.exports = [
     response: {
       'msg': '更新成功',
       'success': true
+    }
+  },
+  {
+    url: '/ascription/addAscription',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '添加成功',
+        'success': true
+      }
+    }
+  },
+  {
+    url: '/ascription/delAscription',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '删除成功',
+        'success': true
+      }
+    }
+  },
+  {
+    url: '/ascription/changeAscription',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '修改成功',
+        'success': true
+      }
+    }
+  },
+  {
+    url: '/ascription/queryAscriptionAll',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '数据成功',
+        'success': true,
+        'obj': [
+          {
+            'ascriptionId': 0,
+            'ascriptionUuid': 'eb805effb02a11ebb435fcb3bc93041c',
+            'ascriptionName': '自营',
+            'createTime': null,
+            'updateTime': null
+          },
+          {
+            'ascriptionId': 0,
+            'ascriptionUuid': 'eb805effb02a11ebb435fcb3bc93041c',
+            'ascriptionName': '自营',
+            'createTime': null,
+            'updateTime': null
+          }, {
+            'ascriptionId': 0,
+            'ascriptionUuid': 'eb805effb02a11ebb435fcb3bc93041c',
+            'ascriptionName': '自营',
+            'createTime': null,
+            'updateTime': null
+          },
+          {
+            'ascriptionId': 0,
+            'ascriptionUuid': 'eb805effb02a11ebb435fcb3bc93041c',
+            'ascriptionName': '自营',
+            'createTime': null,
+            'updateTime': null
+          },
+          {
+            'ascriptionId': 0,
+            'ascriptionUuid': 'eb805effb02a11ebb435fcb3bc93041c',
+            'ascriptionName': '自营',
+            'createTime': null,
+            'updateTime': null
+          },
+          {
+            'ascriptionId': 0,
+            'ascriptionUuid': 'eb805effb02a11ebb435fcb3bc93041c',
+            'ascriptionName': '自营',
+            'createTime': null,
+            'updateTime': null
+          },
+          {
+            'ascriptionId': 0,
+            'ascriptionUuid': 'eb805effb02a11ebb435fcb3bc93041c',
+            'ascriptionName': '自营',
+            'createTime': null,
+            'updateTime': null
+          }
+        ]
+      }
+    }
+  },
+  {
+    url: '/ascription/queryAscriptionByUuid',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '没有权限',
+        'success': false,
+        'obj': [
+          {
+            'ascriptionId': 0,
+            'ascriptionUuid': 'eb805effb02a11ebb435fcb3bc93041c',
+            'ascriptionName': '自营',
+            'createTime': null,
+            'updateTime': null
+          }
+        ]
+      }
+    }
+  },
+  {
+    url: '/DayDevelopment/dayDevelopmentReport',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '成功',
+        'success': true,
+        'obj': [
+          {
+            'area': '丰县',
+            'onlineChannel': 12,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          },
+          {
+            'area': '沛县',
+            'onlineChannel': 12,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          },
+          {
+            'area': '邳州',
+            'onlineChannel': 13,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          },
+          {
+            'area': '开新',
+            'onlineChannel': 14,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          },
+          {
+            'area': '铜山',
+            'onlineChannel': 15,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          },
+          {
+            'area': '新沂',
+            'onlineChannel': 16,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          },
+          {
+            'area': '泉山',
+            'onlineChannel': 17,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          },
+          {
+            'area': '贾汪',
+            'onlineChannel': 18,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          },
+          {
+            'area': '鼓楼',
+            'onlineChannel': 11,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          },
+          {
+            'area': '睢宁',
+            'onlineChannel': 20,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          },
+          {
+            'area': '云龙',
+            'onlineChannel': 30,
+            'selfChannel': 10,
+            'socIndex': 100,
+            'selfIndex': 100,
+            'onlineIndex': 100,
+            'socChannel': 10
+          }
+        ]
+      }
     }
   }
 ]

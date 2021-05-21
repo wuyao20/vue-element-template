@@ -63,7 +63,7 @@ export default {
         outputStartTime: '',
         outputEndTime: '',
         page: 1,
-        limit: 20
+        limit: 50
       },
       pickerOptions: {
         shortcuts: [{

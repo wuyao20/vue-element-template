@@ -86,7 +86,7 @@ export default {
       listQuery: {
         content: '',
         page: 1,
-        limit: 20
+        limit: 50
       },
       total: 0,
       btnLoading: false,

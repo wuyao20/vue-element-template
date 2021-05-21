@@ -106,7 +106,7 @@ export default {
       listQuery: {
         userPhone: '',
         page: 1,
-        limit: 20
+        limit: 50
       },
       tableLoading: false,
       btnLoading: false,
@@ -126,6 +126,7 @@ export default {
   created() {
     vip3QueryAllTarget(this.listQuery).then(res => {
       this.list = res.obj.records
+      this.total = res.obj.total
     })
     vip3AllService().then(res => {
       const { obj } = res
@@ -160,7 +161,7 @@ export default {
     _handleSearch() {
       vip3QueryAllTarget(this.listQuery).then(res => {
         this.list = res.obj.records
-        this.total = res.total
+        this.total = res.obj.total
         this.$forceUpdate()
       })
     },
@@ -169,7 +170,7 @@ export default {
       this.btnLoading = true
       vip3QueryAllTargetByPhone(this.listQuery).then(res => {
         this.list = res.obj.records
-        this.total = res.total
+        this.total = res.obj.total
         this.$forceUpdate()
         this.tableLoading = false
         this.btnLoading = false

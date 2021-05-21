@@ -64,3 +64,47 @@ export function vip3UpdateService(data) {
     method: 'get'
   })
 }
+
+export function ascriptionAll() {
+  return request({
+    url: `/ascription/queryAscriptionAll`,
+    method: 'get'
+  })
+}
+
+export function ascriptionAllById(uuid) {
+  return request({
+    url: `/ascription/queryAscriptionByUuid/${uuid}`,
+    method: 'get'
+  })
+}
+
+export function addAscription(data) {
+  return request({
+    url: `/ascription/addAscription`,
+    method: 'post',
+    data
+  })
+}
+
+export function deleteAscription(uuid) {
+  return request({
+    url: `/ascription/delAscription/${uuid}`,
+    method: 'get'
+  })
+}
+
+export function updateAscription(data) {
+  return request({
+    url: `/ascription/changeAscription`,
+    method: 'post',
+    data
+  })
+}
+
+export function dayDevelopment() {
+  return request({
+    url: `/DayDevelopment/dayDevelopmentReport`,
+    method: 'get'
+  })
+}

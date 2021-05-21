@@ -62,60 +62,44 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/department',
+    path: '/admin',
+    name: 'admin',
     component: Layout,
+    meta: { title: '管理员', icon: 'el-icon-setting', roles: ['admin'] },
+    redirect: '/admin/department',
     children: [
       {
-        path: 'index',
+        path: 'department',
         name: 'Department',
         component: () => import('@/views/department/index'),
         meta: { title: '部门管理', icon: 'department', roles: ['department'] }
-      }
-    ]
-  },
-  {
-    path: '/user',
-    component: Layout,
-    meta: { roles: ['用户管理'] },
-    children: [
+      },
       {
-        path: 'index',
+        path: 'ascription',
+        name: 'ascription',
+        component: () => import('@/views/admin/ascription/index'),
+        meta: { title: '条线管理', icon: 'el-icon-s-cooperation', roles: ['departments'] }
+      },
+      {
+        path: 'user',
         name: 'User',
         component: () => import('@/views/user/index'),
         meta: { title: '用户管理', icon: 'el-icon-user', roles: ['user'] }
-      }
-    ]
-  },
-  {
-    path: '/role',
-    component: Layout,
-    children: [
+      },
       {
-        path: 'index',
+        path: 'role',
         name: 'Role',
         component: () => import('@/views/role/index'),
         meta: { title: '角色管理', icon: 'role', roles: ['roles'] }
-      }
-    ]
-  },
-  {
-    path: '/upload',
-    component: Layout,
-    children: [
+      },
       {
-        path: 'index',
+        path: 'upload',
         name: 'Upload',
         component: () => import('@/views/upload/Upload'),
         meta: { title: '上传文件', icon: 'upload', roles: ['upload'] }
-      }
-    ]
-  },
-  {
-    path: '/task',
-    component: Layout,
-    children: [
+      },
       {
-        path: 'index',
+        path: 'quartz',
         name: 'quartzTask',
         component: () => import('@/views/task/index'),
         meta: { title: '定时任务', icon: 'task', roles: ['task'] }
@@ -183,12 +167,6 @@ export const asyncRoutes = [
             meta: { title: '营业厅管理', icon: 'businessHall', roles: ['selfhall'] }
           },
           {
-            path: 'task',
-            name: 'Task',
-            component: () => import('@/views/public/self/task'),
-            meta: { title: '自营指标管理', icon: 'target', roles: ['selftask'] }
-          },
-          {
             path: 'dev2person',
             name: 'Dev2Person',
             component: () => import('@/views/public/self/wholeDev2Person'),
@@ -215,6 +193,20 @@ export const asyncRoutes = [
             meta: { title: 'VIP3', icon: 'table', roles: ['stock'] }
           }
         ]
+      },
+      {
+        path: 'task',
+        name: 'Task',
+        component: () => import('@/views/public/task'),
+        meta: { title: '指标管理', icon: 'target', roles: ['selftask'] }
+      },
+      {
+        name: 'dayDevelopment',
+        path: 'dayDevelopment',
+        component: () => import('@/views/public/DayDevelopment'),
+        meta: {
+          title: '大公众日发展报表', icon: 'charts'
+        }
       }
     ]
   },
