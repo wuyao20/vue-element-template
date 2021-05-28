@@ -29,11 +29,12 @@
           {{scope.row.visitDate}}
         </template>
       </el-table-column>
-      <el-table-column prop="returnVisit" label="回访记录" align="center">
-        <template slot-scope="scope">
-          {{scope.row.returnVisit}}
-        </template>
-      </el-table-column>
+<!--      <el-table-column prop="returnVisit" label="回访记录" align="center">-->
+<!--        <template slot-scope="scope">-->
+<!--          {{scope.row.returnVisit}}-->
+<!--        </template>-->
+<!--      </el-table-column>-->
+      <el-table-column prop="feedbackNum" label="回访次数" align="center"></el-table-column>
       <el-table-column label="操作" align="center" width="150px">
         <template slot-scope="scope">
           <el-button v-waves size="small" type="primary" @click="handleUpdate(scope.row)">编辑</el-button>

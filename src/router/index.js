@@ -205,7 +205,7 @@ export const asyncRoutes = [
         path: 'dayDevelopment',
         component: () => import('@/views/public/DayDevelopment'),
         meta: {
-          title: '大公众日发展报表', icon: 'charts'
+          title: '大公众日发展报表', icon: 'charts', roles: ['dayDev']
         }
       }
     ]

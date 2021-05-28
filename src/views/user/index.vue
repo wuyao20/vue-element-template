@@ -6,6 +6,8 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-user-solid" @click="createUser">新建用户</el-button>
       <el-button v-waves class="filter-item" type="success" icon="el-icon-upload" @click="uploadExcel">批量上传</el-button>
+      <el-button v-waves class="filter-item" type="primary" plain @click="hasNoRoles">未授权</el-button>
+      <el-button v-waves class="filter-item" type="primary" plain @click="handleAuthorization">授权</el-button>
     </div>
     <el-table
       :key="tableKey"
@@ -15,7 +17,12 @@
       fit
       highlight-current-row
       style="width: 100%;"
+      @selection-change="handleSelectionChange"
     >
+      <el-table-column
+        type="selection"
+        width="55">
+      </el-table-column>
       <el-table-column label="ID" prop="id" sortable align="center" width="80">
         <template slot-scope="{row}">
           <span>{{ row.userId }}</span>
@@ -152,12 +159,22 @@
         </div>
       </el-upload>
     </el-dialog>
+    <el-dialog title="授权" :visible.sync="dialogRolesVisible">
+      <el-select v-model="roleUuId">
+        <el-option v-for="role in roles" :key="role.roleUuid" :label="role.roleName" :value="role.roleUuid">
+        </el-option>
+      </el-select>
+      <div slot="footer">
+        <el-button @click="dialogRolesVisible = false">取消</el-button>
+        <el-button @click="handleBind" type="primary">确认</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { queryAllRole, queryAllLevels } from '@/api/roles'
-import { selectAllUser, addUser, updateUser, delUser } from '@/api/user'
+import { selectAllUser, addUser, updateUser, delUser, hasNoRolesPerson, bindRoles } from '@/api/user'
 import { departmentQueryAll } from '@/api/department'
 import Pagination from '@/components/Pagination/index'
 import waves from '@/directive/waves'
@@ -216,6 +233,8 @@ export default {
   },
   data() {
     return {
+      roleUuId: '',
+      dialogRolesVisible: false,
       dialogUploadVisible: false,
       fileList: [],
       listQuery: {
@@ -266,7 +285,8 @@ export default {
       levels: [],
       grids: ['泉山', '云龙', '鼓楼', '开新', '铜山', '贾汪', '丰县', '沛县', '新沂', '邳州', '睢宁', '市区本部', '政企'],
       areas: ['泉山', '云龙', '鼓楼', '开新', '铜山', '贾汪', '丰县', '沛县', '新沂', '邳州', '睢宁', '市区本部'],
-      ascriptions: []
+      ascriptions: [],
+      multipleSelection: []
     }
   },
   computed: {
@@ -277,7 +297,6 @@ export default {
   created() {
     queryAllLevels().then(res => {
       this.levels = res
-      console.log(this.levels)
     })
     this.handleFilter()
     departmentQueryAll({ page: 1 }).then(res => {
@@ -285,13 +304,53 @@ export default {
     })
     queryAllRole({ page: 1 }).then(res => {
       this.roles = res.obj.records
+      console.log(this.roles)
     })
     ascriptionAll().then(res => {
       this.ascriptions = res.obj
-      console.log(this.ascriptions)
     })
   },
   methods: {
+    handleBind() {
+      const res = {
+        roleUuId: this.roleUuId,
+        bindIds: this.multipleSelection.map(item => {
+          return item.userUuid
+        })
+      }
+      bindRoles(res).then(res => {
+        const { msg, success } = res
+        if (success) {
+          this.$notify.success({
+            title: 'success',
+            message: msg
+          })
+        } else {
+          this.$notify.error({
+            title: 'error',
+            message: msg
+          })
+        }
+        this.handleFilter()
+        this.dialogRolesVisible = false
+      })
+    },
+    handleAuthorization() {
+      this.roleUuId = ''
+      this.dialogRolesVisible = true
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
+    },
+    hasNoRoles() {
+      hasNoRolesPerson().then(res => {
+        const { success, obj } = res
+        if (success) {
+          this.list = obj
+          this.total = 0
+        }
+      })
+    },
     uploadExcel() {
       this.dialogUploadVisible = true
       this.fileList = []
@@ -340,7 +399,7 @@ export default {
       selectAllUser(this.listQuery).then(res => {
         console.log(res)
         this.list = res.obj.records
-        this.total = this.list.length
+        this.total = res.obj.total
         this.listLoading = false
       })
     },

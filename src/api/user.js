@@ -59,3 +59,20 @@ export function getMenu() {
     method: 'get'
   })
 }
+
+export function hasNoRolesPerson() {
+  return request({
+    url: `/user/getNoRoleUsers`,
+    method: 'get'
+  })
+}
+
+export function bindRoles(data) {
+  const { roleUuId } = data
+  console.log(roleUuId)
+  return request({
+    url: `/user/bindRoleBat/${roleUuId}`,
+    method: 'post',
+    data
+  })
+}
