@@ -23,9 +23,26 @@ export function vip3QueryAllTarget(data) {
 
 export function updateVisit(data) {
   return request({
-    url: `/tempActive/vip3/updateVisit/${data.userNo}`,
+    url: `/tempActive/vip3/addVisit`,
     method: 'post',
     data
+  })
+}
+
+export function updateInnerItem(params) {
+  const { id, data } = params
+  console.log(params, id, data)
+  return request({
+    url: `/tempActive/vip3/updateVisit/${id}`,
+    method: 'post',
+    data
+  })
+}
+
+export function getVisitedList(activeId) {
+  return request({
+    url: `/tempActive/vip3/getVisitList/${activeId}`,
+    method: 'get'
   })
 }
 

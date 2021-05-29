@@ -4149,302 +4149,33 @@ module.exports = [
         'msg': '成功',
         'success': true,
         'obj': {
-          records: [
-            {
-              'id': 1, // 排序ID（不展示）
-              'userNo': '3420072612787592', // uuid （不展示）
-              'deviceNumber': '13270332000', // 移动网账号
-              'deviceNumberKd': '051602224684', // 宽带账号
-              'acceptDate': '20210426', // 受理日期
-              'shareAddress': '江苏省徐州市铜山区柳新镇府前路共享新村小区_YSL_KDXQ', // 虚拟地址
-              'kdAddress': '江苏省徐州市铜山区柳新镇府前路共享新村小区_YSL_KDXQ', // 系统地址
-              'userStatus': '0', // 状态
-              'customerServiceId': 'H0700D15', // vip客服经理工号
-              'customerServiceName': '高米', // 名称
-              'returnVisit': null, // 回访记录
-              'visitDate': null // 回访日期
-            },
+          'records': [
             {
               'id': 2,
-              'userNo': '3420072612787280',
-              'deviceNumber': '13270253222',
-              'deviceNumberKd': '051602040189',
-              'acceptDate': '20210426',
-              'shareAddress': '江苏省徐州市铜山区柳新镇府前路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区柳新镇府前路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C11',
-              'customerServiceName': '李雪',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 3,
-              'userNo': '3419042662904046',
-              'deviceNumber': '13041934668',
-              'deviceNumberKd': '051602220052',
-              'acceptDate': '20210426',
-              'shareAddress': '江苏省徐州市铜山区柳新镇府前路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区柳新镇府前路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C37',
-              'customerServiceName': '李苹',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 4,
-              'userNo': '3419112867014439',
-              'deviceNumber': '13056222740',
-              'deviceNumberKd': '051602219709',
-              'acceptDate': '20210426',
-              'shareAddress': '江苏省徐州市铜山区柳新镇府前路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区柳新镇府前路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C37',
-              'customerServiceName': '李苹',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 5,
-              'userNo': '3418122796236639',
-              'deviceNumber': '13270280113',
-              'deviceNumberKd': '051602223685',
-              'acceptDate': '20210420',
-              'shareAddress': '江苏省徐州市泉山区泰山路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市泉山区泰山路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H800J591',
-              'customerServiceName': '韩玲',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 6,
-              'userNo': '3417021287034344',
-              'deviceNumber': '17626528668',
-              'deviceNumberKd': '051602229509',
-              'acceptDate': '20210422',
-              'shareAddress': '江苏省徐州市泉山区泰山路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市泉山区泰山路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C17',
-              'customerServiceName': '高园园',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 7,
-              'userNo': '3419062753201048',
-              'deviceNumber': '18651794998',
-              'deviceNumberKd': '051602225598',
-              'acceptDate': '20210421',
-              'shareAddress': '江苏省徐州市泉山区泰山路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市泉山区泰山路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0000C95',
-              'customerServiceName': '王肖',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 8,
-              'userNo': '3420042466899665',
-              'deviceNumber': '13270354586',
-              'deviceNumberKd': '051602129028',
-              'acceptDate': '20210421',
-              'shareAddress': '江苏省徐州市云龙区和平路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市云龙区和平路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C52',
-              'customerServiceName': '陈杨',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 9,
-              'userNo': '3417032925536382',
-              'deviceNumber': '18651788497',
-              'deviceNumberKd': '051601047611',
-              'acceptDate': '20210424',
-              'shareAddress': '江苏省徐州市云龙区和平路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市云龙区和平路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C17',
-              'customerServiceName': '高园园',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 10,
-              'userNo': '3420062357261920',
-              'deviceNumber': '18652225544',
-              'deviceNumberKd': '051602228060',
-              'acceptDate': '20210407',
-              'shareAddress': '江苏省徐州市云龙区和平路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市云龙区和平路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C52',
-              'customerServiceName': '陈杨',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 11,
-              'userNo': '3420022555589711',
-              'deviceNumber': '13056217551',
-              'deviceNumberKd': '051602223085',
-              'acceptDate': '20210426',
-              'shareAddress': '江苏省徐州市云龙区和平路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市云龙区和平路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C52',
-              'customerServiceName': '陈杨',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 12,
-              'userNo': '3414120928247661',
-              'deviceNumber': '18652242886',
-              'deviceNumberKd': '051602226792',
-              'acceptDate': '20210414',
-              'shareAddress': '江苏省徐州市云龙区和平路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市云龙区和平路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C03',
-              'customerServiceName': '张聪',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 13,
-              'userNo': '3419062753312669',
-              'deviceNumber': '13056253281',
-              'deviceNumberKd': '051602228870',
-              'acceptDate': '20210427',
-              'shareAddress': '江苏省徐州市睢宁县睢城镇永安路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市睢宁县睢城镇永安路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H800J589',
-              'customerServiceName': '王与',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 14,
-              'userNo': '3419052767094763',
-              'deviceNumber': '15651348840',
-              'deviceNumberKd': '051602228542',
-              'acceptDate': '20210419',
-              'shareAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C37',
-              'customerServiceName': '李苹',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 15,
-              'userNo': '3420072467930164',
-              'deviceNumber': '18652200903',
-              'deviceNumberKd': '051602139712',
-              'acceptDate': '20210402',
-              'shareAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C37',
-              'customerServiceName': '李苹',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 16,
-              'userNo': '3415011130171278',
-              'deviceNumber': '18652181871',
-              'deviceNumberKd': '051602220105',
-              'acceptDate': '20210422',
-              'shareAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C37',
-              'customerServiceName': '李苹',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 17,
-              'userNo': '3419010645186225',
-              'deviceNumber': '13056260798',
-              'deviceNumberKd': '051602137038',
-              'acceptDate': '20210419',
-              'shareAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H800J591',
-              'customerServiceName': '韩玲',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 18,
-              'userNo': '3416091419773093',
-              'deviceNumber': '13115208948',
-              'deviceNumberKd': '051602001681',
-              'acceptDate': '20210422',
-              'shareAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C37',
-              'customerServiceName': '李苹',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 19,
-              'userNo': '3415053036636809',
-              'deviceNumber': '18652265811',
-              'deviceNumberKd': '051602105323',
-              'acceptDate': '20210422',
-              'shareAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C37',
-              'customerServiceName': '李苹',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 20,
-              'userNo': '3419040249736971',
-              'deviceNumber': '13270202877',
-              'deviceNumberKd': '051601075537',
-              'acceptDate': '20210419',
-              'shareAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H800J591',
-              'customerServiceName': '韩玲',
-              'returnVisit': null,
-              'visitDate': null
-            },
-            {
-              'id': 21,
-              'userNo': '3419062753235071',
-              'deviceNumber': '13013981383',
-              'deviceNumberKd': '051602177215',
-              'acceptDate': '20210422',
-              'shareAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'kdAddress': '江苏省徐州市铜山区铜山新区北京路共享新村小区_YSL_KDXQ',
-              'userStatus': '0',
-              'customerServiceId': 'H0001C37',
-              'customerServiceName': '李苹',
-              'returnVisit': null,
-              'visitDate': null
+              'userNo': '3420072612787280', // 不显示
+              'deviceNumber': '13270253222', // 号码
+              'deviceNumberKd': '051602040189', // 宽带号码
+              'acceptDate': '20210426', // 受理日期
+              'shareAddress': '江苏省徐州市铜山区柳新镇府前路共享新村小区_YSL_KDXQ', // 虚拟地址
+              'kdAddress': '江苏省徐州市铜山区柳新镇府前路共享新村小区_YSL_KDXQ', // 装机地址
+              'userStatus': '0', // 状态
+              'customerServiceId': 'H0001C11', // vip客服工号
+              'customerServiceName': '李雪', // vip客服名称
+              'feedbackNum': 1, // 回访记录条数（更新）
+              'visitDate': '2020-12-01', // 最后回访时间（更新）
+              'returnVisit': 'test' // 最后一次回访的内容（更新）
             }
-          ]
+          ],
+          'total': 1,
+          'size': 50,
+          'current': 1,
+          'orders': [],
+          'optimizeCountSql': true,
+          'hitCount': false,
+          'countId': null,
+          'maxLimit': null,
+          'searchCount': true,
+          'pages': 1
         }
       }
     }
@@ -4467,10 +4198,7 @@ module.exports = [
     response: config => {
       return {
         'msg': '失败',
-        'date': '2021-04-30 14:18:57',
-        'success': false,
-        'userNo': 'a',
-        'content': 'demoData'
+        'success': false
       }
     }
   },
@@ -4875,6 +4603,37 @@ module.exports = [
             'socChannel': 10
           }
         ]
+      }
+    }
+  },
+  {
+    url: '/tempActive/vip3/getVisitList',
+    type: 'get',
+    response: config => {
+      return {
+        'msg': '成功',
+        'success': true,
+        'obj': [
+          {
+            'id': 1,
+            'activeId': 0,
+            'userUuid': '1be368247fa911eb8777fcb3bc93041c',
+            'userName': '续万卿',
+            'activeContent': 'test1',
+            'activeRemarks': 'ww',
+            'activeCreatTime': '2021-05-28'
+          }
+        ]
+      }
+    }
+  },
+  {
+    url: '/tempActive/vip3/addVisit',
+    type: 'post',
+    response: config => {
+      return {
+        'msg': '添加成功',
+        'success': true
       }
     }
   }
